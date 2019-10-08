@@ -1,0 +1,23 @@
+C:\Users\17137\Documents\Tencent Files\171372668\FileRecv\aspnet-zero-core-7.0.0\aspnet-core\TuDou.Grace\TuDou.Grace.Application.Shared\bin\Debug\netcoreapp2.2\TuDou.Grace.Application.Shared.deps.json
+C:\Users\17137\Documents\Tencent Files\171372668\FileRecv\aspnet-zero-core-7.0.0\aspnet-core\TuDou.Grace\TuDou.Grace.Application.Shared\bin\Debug\netcoreapp2.2\TuDou.Grace.Application.Shared.dll
+C:\Users\17137\Documents\Tencent Files\171372668\FileRecv\aspnet-zero-core-7.0.0\aspnet-core\TuDou.Grace\TuDou.Grace.Application.Shared\bin\Debug\netcoreapp2.2\TuDou.Grace.Application.Shared.pdb
+C:\Users\17137\Documents\Tencent Files\171372668\FileRecv\aspnet-zero-core-7.0.0\aspnet-core\TuDou.Grace\TuDou.Grace.Application.Shared\bin\Debug\netcoreapp2.2\TuDou.Grace.Core.Shared.dll
+C:\Users\17137\Documents\Tencent Files\171372668\FileRecv\aspnet-zero-core-7.0.0\aspnet-core\TuDou.Grace\TuDou.Grace.Application.Shared\bin\Debug\netcoreapp2.2\TuDou.Grace.Core.Shared.pdb
+C:\Users\17137\Documents\Tencent Files\171372668\FileRecv\aspnet-zero-core-7.0.0\aspnet-core\TuDou.Grace\TuDou.Grace.Application.Shared\obj\Debug\netcoreapp2.2\TuDou.Grace.Application.Shared.csprojAssemblyReference.cache
+C:\Users\17137\Documents\Tencent Files\171372668\FileRecv\aspnet-zero-core-7.0.0\aspnet-core\TuDou.Grace\TuDou.Grace.Application.Shared\obj\Debug\netcoreapp2.2\TuDou.Grace.Application.Shared.csproj.CoreCompileInputs.cache
+C:\Users\17137\Documents\Tencent Files\171372668\FileRecv\aspnet-zero-core-7.0.0\aspnet-core\TuDou.Grace\TuDou.Grace.Application.Shared\obj\Debug\netcoreapp2.2\TuDou.Grace.Application.Shared.AssemblyInfoInputs.cache
+C:\Users\17137\Documents\Tencent Files\171372668\FileRecv\aspnet-zero-core-7.0.0\aspnet-core\TuDou.Grace\TuDou.Grace.Application.Shared\obj\Debug\netcoreapp2.2\TuDou.Grace.Application.Shared.AssemblyInfo.cs
+C:\Users\17137\Documents\Tencent Files\171372668\FileRecv\aspnet-zero-core-7.0.0\aspnet-core\TuDou.Grace\TuDou.Grace.Application.Shared\obj\Debug\netcoreapp2.2\TuDou.Grace.Application.Shared.csproj.CopyComplete
+C:\Users\17137\Documents\Tencent Files\171372668\FileRecv\aspnet-zero-core-7.0.0\aspnet-core\TuDou.Grace\TuDou.Grace.Application.Shared\obj\Debug\netcoreapp2.2\TuDou.Grace.Application.Shared.dll
+C:\Users\17137\Documents\Tencent Files\171372668\FileRecv\aspnet-zero-core-7.0.0\aspnet-core\TuDou.Grace\TuDou.Grace.Application.Shared\obj\Debug\netcoreapp2.2\TuDou.Grace.Application.Shared.pdb
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.Application.Shared\bin\Debug\netcoreapp2.2\TuDou.Grace.Application.Shared.deps.json
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.Application.Shared\bin\Debug\netcoreapp2.2\TuDou.Grace.Application.Shared.dll
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.Application.Shared\bin\Debug\netcoreapp2.2\TuDou.Grace.Application.Shared.pdb
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.Application.Shared\bin\Debug\netcoreapp2.2\TuDou.Grace.Core.Shared.dll
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.Application.Shared\bin\Debug\netcoreapp2.2\TuDou.Grace.Core.Shared.pdb
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.Application.Shared\obj\Debug\netcoreapp2.2\TuDou.Grace.Application.Shared.AssemblyInfoInputs.cache
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.Application.Shared\obj\Debug\netcoreapp2.2\TuDou.Grace.Application.Shared.AssemblyInfo.cs
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.Application.Shared\obj\Debug\netcoreapp2.2\TuDou.Grace.Application.Shared.csproj.CopyComplete
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.Application.Shared\obj\Debug\netcoreapp2.2\TuDou.Grace.Application.Shared.dll
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.Application.Shared\obj\Debug\netcoreapp2.2\TuDou.Grace.Application.Shared.pdb
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.Application.Shared\obj\Debug\netcoreapp2.2\TuDou.Grace.Application.Shared.csprojAssemblyReference.cache

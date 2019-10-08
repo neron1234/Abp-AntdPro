@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+ 
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <RootNamespace>TuDou.Grace</RootNamespace>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Abp" Version="4.9.0" />
+    <PackageReference Include="Abp.Zero.Common" Version="4.9.0" />
+    <PackageReference Include="Abp.ZeroCore" Version="4.9.0" />
+  </ItemGroup>
+
+
+</Project>

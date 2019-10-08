@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EPPlus" Version="4.5.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TuDou.Grace.Application.Shared\TuDou.Grace.Application.Shared.csproj" />
+    <ProjectReference Include="..\TuDou.Grace.Core\TuDou.Grace.Core.csproj" />
+    <ProjectReference Include="..\TuDou.Grace.EntityFrameworkCore\TuDou.Grace.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+</Project>

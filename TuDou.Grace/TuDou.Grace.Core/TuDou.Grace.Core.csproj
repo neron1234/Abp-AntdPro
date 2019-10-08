@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <UserSecretsId>TuDou-Grace-894FDFC1-6482-4A56-926A-3C46C9FE0329</UserSecretsId>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Abp.AutoMapper" Version="4.9.0" />
+    <PackageReference Include="Abp.MailKit" Version="4.9.0" />
+    <PackageReference Include="Abp.Zero.Ldap" Version="4.9.0" />
+    <PackageReference Include="Abp.ZeroCore.IdentityServer4.EntityFrameworkCore" Version="4.9.0" />
+    <PackageReference Include="Castle.Windsor.MsDependencyInjection" Version="3.3.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="3.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="3.0.0" />
+    <PackageReference Include="PayPal" Version="2.0.0-rc2" />
+    <PackageReference Include="Stripe.net" Version="25.8.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.6.0" />
+    <PackageReference Include="TimeZoneConverter" Version="3.2.0" />
+    <PackageReference Include="Twilio" Version="5.33.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TuDou.Grace.Core.Shared\TuDou.Grace.Core.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Authentication\TwoFactor\" />
+    <Folder Include="Localization\Grace\" />
+    <Folder Include="Net\Emailing\EmailTemplates\" />
+  </ItemGroup>
+
+</Project>

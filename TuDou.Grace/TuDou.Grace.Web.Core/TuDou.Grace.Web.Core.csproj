@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Abp.AspNetCore" Version="4.9.0" />
+    <PackageReference Include="Abp.AspNetCore.SignalR" Version="4.9.0" />
+    <PackageReference Include="Abp.HangFire.AspNetCore" Version="4.9.0" />
+    <PackageReference Include="Abp.RedisCache" Version="4.9.0" />
+    <PackageReference Include="Abp.ZeroCore.IdentityServer4" Version="4.9.0" />
+    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.WsFederation" Version="2.2.0" />
+    <PackageReference Include="PaulMiami.AspNetCore.Mvc.Recaptcha" Version="1.2.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="Hangfire.SqlServer" Version="1.7.4" />
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TuDou.Grace.Application\TuDou.Grace.Application.csproj" />
+    <ProjectReference Include="..\TuDou.Grace.EntityFrameworkCore\TuDou.Grace.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\TuDou.Grace.GraphQL\TuDou.Grace.GraphQL.csproj" />
+  </ItemGroup>
+
+
+</Project>

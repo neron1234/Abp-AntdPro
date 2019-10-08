@@ -1,0 +1,8 @@
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.Core.Shared\bin\Debug\netcoreapp3.0\TuDou.Grace.Core.Shared.deps.json
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.Core.Shared\bin\Debug\netcoreapp3.0\TuDou.Grace.Core.Shared.dll
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.Core.Shared\bin\Debug\netcoreapp3.0\TuDou.Grace.Core.Shared.pdb
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.Core.Shared\obj\Debug\netcoreapp3.0\TuDou.Grace.Core.Shared.csprojAssemblyReference.cache
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.Core.Shared\obj\Debug\netcoreapp3.0\TuDou.Grace.Core.Shared.AssemblyInfoInputs.cache
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.Core.Shared\obj\Debug\netcoreapp3.0\TuDou.Grace.Core.Shared.AssemblyInfo.cs
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.Core.Shared\obj\Debug\netcoreapp3.0\TuDou.Grace.Core.Shared.dll
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.Core.Shared\obj\Debug\netcoreapp3.0\TuDou.Grace.Core.Shared.pdb

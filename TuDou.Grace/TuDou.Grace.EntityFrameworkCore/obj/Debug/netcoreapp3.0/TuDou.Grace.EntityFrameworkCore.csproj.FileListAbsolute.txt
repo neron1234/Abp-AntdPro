@@ -1,0 +1,15 @@
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.EntityFrameworkCore\bin\Debug\netcoreapp3.0\TuDou.Grace.EntityFrameworkCore.deps.json
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.EntityFrameworkCore\bin\Debug\netcoreapp3.0\TuDou.Grace.EntityFrameworkCore.runtimeconfig.json
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.EntityFrameworkCore\bin\Debug\netcoreapp3.0\TuDou.Grace.EntityFrameworkCore.runtimeconfig.dev.json
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.EntityFrameworkCore\bin\Debug\netcoreapp3.0\TuDou.Grace.EntityFrameworkCore.dll
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.EntityFrameworkCore\bin\Debug\netcoreapp3.0\TuDou.Grace.EntityFrameworkCore.pdb
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.EntityFrameworkCore\bin\Debug\netcoreapp3.0\TuDou.Grace.Core.dll
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.EntityFrameworkCore\bin\Debug\netcoreapp3.0\TuDou.Grace.Core.Shared.dll
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.EntityFrameworkCore\bin\Debug\netcoreapp3.0\TuDou.Grace.Core.pdb
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.EntityFrameworkCore\bin\Debug\netcoreapp3.0\TuDou.Grace.Core.Shared.pdb
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.EntityFrameworkCore\obj\Debug\netcoreapp3.0\TuDou.Grace.EntityFrameworkCore.csprojAssemblyReference.cache
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.EntityFrameworkCore\obj\Debug\netcoreapp3.0\TuDou.Grace.EntityFrameworkCore.AssemblyInfoInputs.cache
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.EntityFrameworkCore\obj\Debug\netcoreapp3.0\TuDou.Grace.EntityFrameworkCore.AssemblyInfo.cs
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.EntityFrameworkCore\obj\Debug\netcoreapp3.0\TuDou.Grace.EntityFrameworkCore.csproj.CopyComplete
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.EntityFrameworkCore\obj\Debug\netcoreapp3.0\TuDou.Grace.EntityFrameworkCore.dll
+D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.EntityFrameworkCore\obj\Debug\netcoreapp3.0\TuDou.Grace.EntityFrameworkCore.pdb
