@@ -8,7 +8,7 @@ abp + antd pro
 <p><span class="bjh-p"><span class="bjh-strong">二、           </span><span class="bjh-strong">什么是</span><span class="bjh-strong">Type</span><span class="bjh-strong">Script？</span></span></p>
 <p>TypeScript是一种由微软开发的自由和开源的编程语言。它是JavaScript的一个超集，而且本质上向这个语言添加了可选的静态类型和基于类的面向对象编程。</p>
 <p>
-    对应代码生成器项目地址:<a href="#">https://github.com/xiaoliang1314/AbpZero-AntdPro-CodeGenerate</a>
+    对应代码生成器项目地址:<a href="https://github.com/xiaoliang1314/AbpZero-AntdPro-CodeGenerate">https://github.com/xiaoliang1314/AbpZero-AntdPro-CodeGenerate</a>
 </p>
 <h1>代码持续更新中。。。</h1>
 <h3></h3>	
