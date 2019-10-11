@@ -1,6 +1,6 @@
 import { IConfig, IPlugin } from 'umi-types';
 import defaultSettings from './defaultSettings'; // https://umijs.org/config/
-
+import aliyunTheme from '@ant-design/aliyun-theme';
 import slash from 'slash2';
 import webpackPlugin from './plugin.config';
 const { pwa, primaryColor } = defaultSettings;
@@ -123,6 +123,12 @@ export default {
               icon: 'smile',
               routes: [
                 {
+                  path: '/admin/organizationUnits',
+                  name: 'organizationUnits',
+                  icon: 'smile',
+                  component: './admin/organizationUnits',
+                },
+                {
                   path: '/admin/users',
                   name: 'users',
                   icon: 'smile',
@@ -134,12 +140,7 @@ export default {
                   icon: 'smile',
                   component: './admin/roles',
                 },
-                {
-                  path: '/admin/organizationUnits',
-                  name: 'organizationUnits',
-                  icon: 'smile',
-                  component: './admin/organizationUnits',
-                },
+
                 {
                   path: '/admin/languages',
                   name: 'languages',
@@ -170,9 +171,7 @@ export default {
     },
   ],
   // Theme for antd: https://ant.design/docs/react/customize-theme-cn
-  theme: {
-    'primary-color': primaryColor,
-  },
+  theme:aliyunTheme,
   define: {
     'process.env.REACT_APP_APP_BASE_URL': process.env.REACT_APP_APP_BASE_URL,
 		'process.env.REACT_APP_REMOTE_SERVICE_BASE_URL': process.env.REACT_APP_REMOTE_SERVICE_BASE_URL,

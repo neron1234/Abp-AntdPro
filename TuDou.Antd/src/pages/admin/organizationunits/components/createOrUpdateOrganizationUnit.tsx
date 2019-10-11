@@ -21,9 +21,9 @@ class CreateOrUpdateOrganizationUnit extends AppComponentBase<ICreateOrUpdateOrg
                 onOk={onOk}>
                     <Form.Item label="名称">
                         {getFieldDecorator('displayName', {
-                            rules: [{ 
-                                required: true, 
-                                message: 'Please input your note!' 
+                            rules: [{
+                                required: true,
+                                message: 'Please input your note!'
                             }],
                         })(<Input />)}
                     </Form.Item>

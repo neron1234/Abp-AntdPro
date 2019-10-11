@@ -46,6 +46,7 @@
     "not ie <= 10"
   ],
   "dependencies": {
+    "@ant-design/aliyun-theme": "0.0.3",
     "@ant-design/pro-layout": "^4.5.9",
     "@antv/data-set": "^0.10.2",
     "@aspnet/signalr": "^1.1.4",
@@ -60,6 +61,8 @@
     "path-to-regexp": "^3.0.0",
     "qs": "^6.7.0",
     "react": "^16.8.6",
+    "react-contexify": "^4.1.1",
+    "react-contextmenu": "^2.11.0",
     "react-copy-to-clipboard": "^5.0.1",
     "react-document-title": "^2.0.3",
     "react-dom": "^16.8.6",

@@ -20,15 +20,15 @@ export function _onCreate() {
     app.use(plugin);
   });
   
-  app.model({ namespace: 'auditLogs', ...(require('D:/个人程序文件/个人项目/TuDou.Antd/src/models/admin/auditLogs.ts').default) });
-app.model({ namespace: 'languages', ...(require('D:/个人程序文件/个人项目/TuDou.Antd/src/models/admin/languages.ts').default) });
-app.model({ namespace: 'organizationUnits', ...(require('D:/个人程序文件/个人项目/TuDou.Antd/src/models/admin/organizationUnits.ts').default) });
-app.model({ namespace: 'roles', ...(require('D:/个人程序文件/个人项目/TuDou.Antd/src/models/admin/roles.ts').default) });
-app.model({ namespace: 'users', ...(require('D:/个人程序文件/个人项目/TuDou.Antd/src/models/admin/users.ts').default) });
-app.model({ namespace: 'global', ...(require('D:/个人程序文件/个人项目/TuDou.Antd/src/models/global.ts').default) });
-app.model({ namespace: 'login', ...(require('D:/个人程序文件/个人项目/TuDou.Antd/src/models/login.ts').default) });
-app.model({ namespace: 'setting', ...(require('D:/个人程序文件/个人项目/TuDou.Antd/src/models/setting.ts').default) });
-app.model({ namespace: 'user', ...(require('D:/个人程序文件/个人项目/TuDou.Antd/src/models/user.ts').default) });
+  app.model({ namespace: 'auditLogs', ...(require('D:/个人程序文件/个人项目/Abp+AntdPro/TuDou.Antd/src/models/admin/auditLogs.ts').default) });
+app.model({ namespace: 'languages', ...(require('D:/个人程序文件/个人项目/Abp+AntdPro/TuDou.Antd/src/models/admin/languages.ts').default) });
+app.model({ namespace: 'organizationUnits', ...(require('D:/个人程序文件/个人项目/Abp+AntdPro/TuDou.Antd/src/models/admin/organizationUnits.ts').default) });
+app.model({ namespace: 'roles', ...(require('D:/个人程序文件/个人项目/Abp+AntdPro/TuDou.Antd/src/models/admin/roles.ts').default) });
+app.model({ namespace: 'users', ...(require('D:/个人程序文件/个人项目/Abp+AntdPro/TuDou.Antd/src/models/admin/users.ts').default) });
+app.model({ namespace: 'global', ...(require('D:/个人程序文件/个人项目/Abp+AntdPro/TuDou.Antd/src/models/global.ts').default) });
+app.model({ namespace: 'login', ...(require('D:/个人程序文件/个人项目/Abp+AntdPro/TuDou.Antd/src/models/login.ts').default) });
+app.model({ namespace: 'setting', ...(require('D:/个人程序文件/个人项目/Abp+AntdPro/TuDou.Antd/src/models/setting.ts').default) });
+app.model({ namespace: 'user', ...(require('D:/个人程序文件/个人项目/Abp+AntdPro/TuDou.Antd/src/models/user.ts').default) });
   return app;
 }
 
