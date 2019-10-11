@@ -21,3 +21,14 @@ D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.Core\obj\Debug\netcor
 D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.Core\obj\Debug\netcoreapp2.2\TuDou.Grace.Core.dll
 D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.Core\obj\Debug\netcoreapp2.2\TuDou.Grace.Core.pdb
 D:\个人程序文件\个人项目\TuDou.Grace\TuDou.Grace.Core\obj\Debug\netcoreapp2.2\TuDou.Grace.Core.csprojAssemblyReference.cache
+D:\个人程序文件\个人项目\Abp+AntdPro\TuDou.Grace\TuDou.Grace.Core\bin\Debug\netcoreapp2.2\TuDou.Grace.Core.deps.json
+D:\个人程序文件\个人项目\Abp+AntdPro\TuDou.Grace\TuDou.Grace.Core\bin\Debug\netcoreapp2.2\TuDou.Grace.Core.dll
+D:\个人程序文件\个人项目\Abp+AntdPro\TuDou.Grace\TuDou.Grace.Core\bin\Debug\netcoreapp2.2\TuDou.Grace.Core.pdb
+D:\个人程序文件\个人项目\Abp+AntdPro\TuDou.Grace\TuDou.Grace.Core\bin\Debug\netcoreapp2.2\TuDou.Grace.Core.Shared.dll
+D:\个人程序文件\个人项目\Abp+AntdPro\TuDou.Grace\TuDou.Grace.Core\bin\Debug\netcoreapp2.2\TuDou.Grace.Core.Shared.pdb
+D:\个人程序文件\个人项目\Abp+AntdPro\TuDou.Grace\TuDou.Grace.Core\obj\Debug\netcoreapp2.2\TuDou.Grace.Core.csprojAssemblyReference.cache
+D:\个人程序文件\个人项目\Abp+AntdPro\TuDou.Grace\TuDou.Grace.Core\obj\Debug\netcoreapp2.2\TuDou.Grace.Core.AssemblyInfoInputs.cache
+D:\个人程序文件\个人项目\Abp+AntdPro\TuDou.Grace\TuDou.Grace.Core\obj\Debug\netcoreapp2.2\TuDou.Grace.Core.AssemblyInfo.cs
+D:\个人程序文件\个人项目\Abp+AntdPro\TuDou.Grace\TuDou.Grace.Core\obj\Debug\netcoreapp2.2\TuDou.Grace.Core.csproj.CopyComplete
+D:\个人程序文件\个人项目\Abp+AntdPro\TuDou.Grace\TuDou.Grace.Core\obj\Debug\netcoreapp2.2\TuDou.Grace.Core.dll
+D:\个人程序文件\个人项目\Abp+AntdPro\TuDou.Grace\TuDou.Grace.Core\obj\Debug\netcoreapp2.2\TuDou.Grace.Core.pdb

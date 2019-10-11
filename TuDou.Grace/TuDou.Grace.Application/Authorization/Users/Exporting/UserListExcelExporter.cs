@@ -41,7 +41,7 @@ namespace TuDou.Grace.Authorization.Users.Exporting
                         L("UserName"),
                         L("PhoneNumber"),
                         L("EmailAddress"),
-                        L("EmailConfirm"),
+                        L("EmailConfirm"),  
                         L("Roles"),
                         L("Active"),
                         L("CreationTime")
