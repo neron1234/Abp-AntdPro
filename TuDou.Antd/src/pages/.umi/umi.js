@@ -149,6 +149,76 @@ if (!__IS_BROWSER) {
 export { ReactDOMServer };
 export default (__IS_BROWSER ? null : serverRender);
 
+try {
+  // Umi UI Bubble
+  require('../../../node_modules/umi-plugin-ui/lib/bubble').default({
+    port: 3001,
+    path: 'D:/个人程序文件/个人项目/Abp+AntdPro/TuDou.Antd',
+    currentProject: '',
+    isBigfish: undefined,
+  });
+} catch (e) {
+  console.warn('Umi UI render error:', e);
+}
+
+(() => {
+  // Runtime block add component
+  window.GUmiUIFlag = require('../../../node_modules/umi-build-dev/lib/plugins/commands/block/sdk/flagBabelPlugin/GUmiUIFlag.js').default;
+
+  // Enable/Disable block add edit mode
+  const el = document.createElement('style');
+  el.innerHTML = '.g_umiuiBlockAddEditMode { display: none; } ';
+  const hoverEl = document.createElement('style');
+  hoverEl.innerHTML =
+    '.g_umiuiBlockAddEditMode:hover {background: rgba(24, 144, 255, 0.25) !important;}';
+  document.querySelector('head').appendChild(hoverEl);
+  document.querySelector('head').appendChild(el);
+
+  window.addEventListener(
+    'message',
+    event => {
+      try {
+        const { action, data } = JSON.parse(event.data);
+        switch (action) {
+          case 'umi.ui.enableBlockEditMode':
+            el.innerHTML = '';
+            break;
+          case 'umi.ui.disableBlockEditMode':
+            el.innerHTML = '.g_umiuiBlockAddEditMode { display: none; }';
+            break;
+          case 'umi.ui.checkValidEditSection':
+            const haveValid = !!document.querySelectorAll(
+              'div.g_umiuiBlockAddEditMode',
+            ).length;
+            const frame = document.getElementById('umi-ui-bubble');
+            if (frame && frame.contentWindow) {
+              frame.contentWindow.postMessage(
+                JSON.stringify({
+                  action: 'umi.ui.checkValidEditSection.success',
+                  payload: {
+                    haveValid,
+                  },
+                }),
+                '*',
+              );
+            }
+          default:
+            break;
+        }
+      } catch (e) {}
+    },
+    false,
+  );
+
+  // TODO: remove this before publish
+  window.g_enableUmiUIBlockAddEditMode = function() {
+    el.innerHTML = '';
+  };
+  window.g_disableUmiUIBlockAddEditMode = function() {
+    el.innerHTML = '.g_umiuiBlockAddEditMode { display: none; }';
+  };
+})();
+
 require('../../global.less');
 
 // hot module replacement

@@ -5,7 +5,7 @@ import React from 'react';
 import CreateOrUpdateOrganizationUnit from './components/createOrUpdateOrganizationUnit';
 import { ConnectState } from "@/models/connect";
 import { AnyAction, Dispatch } from "redux";
-import { Card, Row, Col, Tree, Tabs, Table, Button } from "antd";
+import { Card, Row, Col, Tree, Tabs, Table, Button, Modal, notification } from "antd";
 import { contextMenu, Menu, Item } from 'react-contexify';
 import { PageHeaderWrapper } from "@ant-design/pro-layout";
 import { OrganizationUnitDto } from "@/services/organizationunits/dtos/organizationUnitDto";
@@ -13,34 +13,20 @@ import { createTree } from "@/utils/utils";
 import { GetOrganizationUnitRolesInput } from "@/services/organizationunits/dtos/getOrganizationUnitRolesInput";
 import { GetOrganizationUnitUsersInput } from "@/services/organizationunits/dtos/getOrganizationUnitUsersInput";
 import { AntTreeNodeMouseEvent } from "antd/lib/tree";
+import AddMember from './components/addMember';
 import 'react-contexify/dist/ReactContexify.min.css';
 const { TabPane } = Tabs;
 const { DirectoryTree } = Tree;
-const MyMenu = () => (
-  <Menu style={{zIndex:1000}} id="rightMenu">
-  <Item >
-    <span>🔷</span>
-    Turn box to blue
-    </Item>
-  <Item >
-    <span>🛑</span>
-    Turn box to red
-   </Item>
-  <Item >
-    <span>🔄</span>
-    Reset
-  </Item>
-</Menu>
-  );
-
+const { confirm } = Modal;
+export declare type ModalType = 'create' | 'update';
 export interface OrganizationUnitsProps {
   dispatch: Dispatch<AnyAction>;
   organizationUnits: OrganizationUnitsStateType;
   loading: boolean;
 }
 export interface OrganizationUnitsStates {
+  addMemberModalVisible: boolean;
   creatrOrUpdateModalVisible: boolean;
-  organizationUnitSelectedId?: number;
   getOrganizationRoleInput: GetOrganizationUnitRolesInput;
   getOrganizationUserInput: GetOrganizationUnitUsersInput;
 }
@@ -49,9 +35,14 @@ export interface OrganizationUnitsStates {
   loading: loading.effects['organizationUnits/getOrganizationUnits'],
 }))
 class OrganizationUnits extends AppComponentBase<OrganizationUnitsProps, OrganizationUnitsStates> {
+  // ref
+  createTreeNodeModalRef: any = React.createRef();
+  // modal类型
+  modalType?: ModalType;
+  organizationUnitSelectedId: number | null = null;
   state = {
+    addMemberModalVisible:false,
     creatrOrUpdateModalVisible: false,
-    organizationUnitSelectedId: undefined,
     getOrganizationUserInput: {
       maxResultCount: this.maxResultCount,
       skipCount: this.skipCount,
@@ -75,53 +66,133 @@ class OrganizationUnits extends AppComponentBase<OrganizationUnitsProps, Organiz
   }
   // 选中树节点
   selectTree = (selectedKeys: string[], e: any) => {
-    this.setState({
-      organizationUnitSelectedId: Number(selectedKeys[0]),
-    }, () => {
-      this.getTableData();
-    });
 
+    this.organizationUnitSelectedId = Number(selectedKeys[0]),
+      this.getTableData();
   }
   createOrUpdateModal = () => {
     this.setState({
       creatrOrUpdateModalVisible: !this.state.creatrOrUpdateModalVisible
     })
   }
-  openCreateOrUpdateModal = () => {
+  openCreateOrUpdateModalOk = () => {
+    var { validateFields, resetFields } = this.createTreeNodeModalRef.current;
+    validateFields((errors: any, values: any) => {
+      if (!errors) {
+        const { dispatch } = this.props;
+        if (this.modalType == "create") {
+          dispatch({
+            type: 'organizationUnits/createOrganizationUnit',
+            payload: {
+              ...values, parentId: this.organizationUnitSelectedId
+            }
+          })
+        } else {
+          dispatch({
+            type: 'organizationUnits/updateOrganizationUnit',
+            payload: {
+              ...values, id: this.organizationUnitSelectedId
+            }
+          })
+        }
+        resetFields();
+        this.createOrUpdateModal();
+        notification.success({
+          message: "操作成功！"
+        })
+      }
+    });
+  }
+  // 创建根节点
+  creatrRootNodeHandler=()=>{
+    this.organizationUnitSelectedId = null;
+    this.openCreateOrUpdateModal("create");
+  }
+  openCreateOrUpdateModal(type: ModalType) {
+    this.modalType=type;
+    if (type === "update") {
+      var { setFieldsValue } = this.createTreeNodeModalRef.current;
+      const selectNode = this.props.organizationUnits.organizationUnits!.items.filter(t => t.id == this.organizationUnitSelectedId);
+
+      setFieldsValue({
+        displayName: selectNode[0].displayName
+      })
+    }
     this.createOrUpdateModal();
   }
-  treeRightClickHandler = (e:AntTreeNodeMouseEvent) => {
-    e.event.preventDefault();
+  // 删除树节点
+  deleteTreeNodeHandler = () => {
+    const self = this;
+    confirm({
+      title: '确认操作',
+      content: '确认要删除此项内容吗',
+      okText: '确认',
+      cancelText: '取消',
+      onOk() {
+        const { dispatch } = self.props;
+        dispatch({
+          type: 'organizationUnits/deleteOrganizationUnit',
+          payload: {
+            id: self.organizationUnitSelectedId
+          }
+        });
+      },
+      onCancel() {
+
+      },
+    });
+  }
+  // 新增组织机构modal打开或关闭
+  addMermberModal=()=>{
+    this.setState({
+      addMemberModalVisible:!this.state.addMemberModalVisible
+    })
+  }
+  // 树右键菜单
+  treeRightClickHandler = (e: AntTreeNodeMouseEvent) => {
+    this.organizationUnitSelectedId = Number(e.node.props.eventKey);
     contextMenu.show({
       id: "rightMenu",
       event: e.event,
     });
-    console.log(123)
   }
   // 标签页选择
   getTableData = () => {
-    if (this.state.organizationUnitSelectedId !== 0) {
+    if (this.organizationUnitSelectedId !== 0) {
       const { dispatch } = this.props;
       dispatch({
         type: 'organizationUnits/getOrganizationUnitUsers',
         payload: {
           ...this.state.getOrganizationUserInput,
-          id: this.state.organizationUnitSelectedId
+          id: this.organizationUnitSelectedId
         }
       })
       dispatch({
         type: 'organizationUnits/getOrganizationUnitRoles',
         payload: {
           ...this.state.getOrganizationRoleInput,
-          id: this.state.organizationUnitSelectedId
+          id: this.organizationUnitSelectedId
         }
       })
 
     }
   }
   render() {
+    const MyMenu = () => (
+      <Menu style={{ zIndex: 1000 }} id="rightMenu">
+        <Item onClick={() => { this.openCreateOrUpdateModal("update") }}>
+          修改
+        </Item>
+        <Item onClick={() => { this.openCreateOrUpdateModal("create") }}>
+          添加子组织
+       </Item>
+        <Item onClick={this.deleteTreeNodeHandler}>
+          删除
+        </Item>
+      </Menu>
+    );
     const { organizationUnits, organizationUnitUsers, organizationUnitRoles } = this.props.organizationUnits;
-    const { organizationUnitSelectedId, creatrOrUpdateModalVisible } = this.state;
+    const { addMemberModalVisible,creatrOrUpdateModalVisible } = this.state;
     let treeData = createTree(organizationUnits == undefined ? [] : organizationUnits.items,
       'parentId',
       'id',
@@ -190,7 +261,7 @@ class OrganizationUnits extends AppComponentBase<OrganizationUnitsProps, Organiz
 
           <Col span={12}>
 
-            <Card extra={<Button onClick={this.openCreateOrUpdateModal} type="primary" icon="plus">添加根组织</Button>} title="组织结构树">
+            <Card extra={<Button onClick={this.creatrRootNodeHandler} type="primary" icon="plus">添加根组织</Button>} title="组织结构树">
               <DirectoryTree
                 onSelect={this.selectTree}
                 showIcon
@@ -206,9 +277,9 @@ class OrganizationUnits extends AppComponentBase<OrganizationUnitsProps, Organiz
               <Tabs type="card"  >
                 <TabPane tab="组织成员" key="user">
                   {
-                    organizationUnitSelectedId == undefined ? (<p>选择一个组织成员</p>) :
+                    this.organizationUnitSelectedId == undefined ? (<p>选择一个组织成员</p>) :
                       (<div><Col style={{ textAlign: 'right' }}>
-                        <Button icon="plus" type="primary">添加组织成员</Button>
+                        <Button onClick={this.addMermberModal} icon="plus" type="primary">添加组织成员</Button>
                       </Col>
                         <Table
                           dataSource={organizationUnitUsers == undefined ? [] : organizationUnitUsers.items}
@@ -221,7 +292,7 @@ class OrganizationUnits extends AppComponentBase<OrganizationUnitsProps, Organiz
                 </TabPane>
                 <TabPane tab="角色" key="role">
                   {
-                    organizationUnitSelectedId == undefined ? (<p>选择一个组织成员</p>) :
+                    this.organizationUnitSelectedId == undefined ? (<p>选择一个组织成员</p>) :
                       (<div>   <Col style={{ textAlign: 'right' }}>
                         <Button icon="plus" type="primary">添加角色</Button>
                       </Col>
@@ -237,10 +308,14 @@ class OrganizationUnits extends AppComponentBase<OrganizationUnitsProps, Organiz
                 </TabPane>
               </Tabs>
               <CreateOrUpdateOrganizationUnit
+                title={this.modalType == "create" ? "新增组织机构" : "修改组织机构"}
+                ref={this.createTreeNodeModalRef}
                 visible={creatrOrUpdateModalVisible}
                 onCancel={this.createOrUpdateModal}
-                onOk={this.openCreateOrUpdateModal} />
-
+                onOk={this.openCreateOrUpdateModalOk} />
+              <AddMember
+              visible={addMemberModalVisible}
+              />
             </Card>
           </Col>
         </Row>

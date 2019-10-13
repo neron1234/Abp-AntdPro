@@ -4,6 +4,7 @@ import React from 'react';
 import { FormComponentProps } from "antd/lib/form";
 export interface ICreateOrUpdateOrganizationUnitProps extends FormComponentProps {
     visible: boolean;
+    title:string;
     onCancel: () => void;
     onOk:()=>void;
 }
@@ -11,11 +12,11 @@ export interface ICreateOrUpdateOrganizationUnitProps extends FormComponentProps
 class CreateOrUpdateOrganizationUnit extends AppComponentBase<ICreateOrUpdateOrganizationUnitProps>{
 
     render() {
-        const { visible, onCancel,onOk } = this.props;
+        const { visible, onCancel,onOk,title} = this.props;
         const { getFieldDecorator } = this.props.form;
         return (
             <Modal
-                title="新增组织机构"
+                title={title}
                 visible={visible}
                 onCancel={onCancel}
                 onOk={onOk}>
