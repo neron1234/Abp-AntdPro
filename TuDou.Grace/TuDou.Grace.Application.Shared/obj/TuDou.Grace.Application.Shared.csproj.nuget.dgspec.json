@@ -47,7 +47,7 @@
           "dependencies": {
             "Abp.Web.Common": {
               "target": "Package",
-              "version": "[4.9.0, )"
+              "version": "[4.10.0, )"
             },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
@@ -113,15 +113,15 @@
           "dependencies": {
             "Abp": {
               "target": "Package",
-              "version": "[4.9.0, )"
+              "version": "[4.10.0, )"
             },
             "Abp.Zero.Common": {
               "target": "Package",
-              "version": "[4.9.0, )"
+              "version": "[4.10.0, )"
             },
             "Abp.ZeroCore": {
               "target": "Package",
-              "version": "[4.9.0, )"
+              "version": "[4.10.0, )"
             },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",

@@ -106,14 +106,14 @@ namespace TuDou.Grace.Authorization.Users
             return AsyncHelper.RunSync(() => GetUserAsync(userIdentifier));
         }
 
-        public override Task<IdentityResult> SetRoles(User user, string[] roleNames)
+        public override Task<IdentityResult> SetRolesAsync(User user, string[] roleNames)
         {
             if (user.Name == "admin" && !roleNames.Contains(StaticRoleNames.Host.Admin))
             {
                 throw new UserFriendlyException(L("AdminRoleCannotRemoveFromAdminUser"));
             }
 
-            return base.SetRoles(user, roleNames);
+            return base.SetRolesAsync(user, roleNames);
         }
 
         public override async Task SetGrantedPermissionsAsync(User user, IEnumerable<Permission> permissions)

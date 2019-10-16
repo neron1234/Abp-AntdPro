@@ -47,7 +47,7 @@
           "dependencies": {
             "Abp.Web.Common": {
               "target": "Package",
-              "version": "[4.9.0, )"
+              "version": "[4.10.0, )"
             },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
@@ -185,15 +185,15 @@
           "dependencies": {
             "Abp": {
               "target": "Package",
-              "version": "[4.9.0, )"
+              "version": "[4.10.0, )"
             },
             "Abp.Zero.Common": {
               "target": "Package",
-              "version": "[4.9.0, )"
+              "version": "[4.10.0, )"
             },
             "Abp.ZeroCore": {
               "target": "Package",
-              "version": "[4.9.0, )"
+              "version": "[4.10.0, )"
             },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
@@ -259,19 +259,19 @@
           "dependencies": {
             "Abp.AutoMapper": {
               "target": "Package",
-              "version": "[4.9.0, )"
+              "version": "[4.10.0, )"
             },
             "Abp.MailKit": {
               "target": "Package",
-              "version": "[4.9.0, )"
+              "version": "[4.10.0, )"
             },
             "Abp.Zero.Ldap": {
               "target": "Package",
-              "version": "[4.9.0, )"
+              "version": "[4.10.0, )"
             },
             "Abp.ZeroCore.IdentityServer4.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[4.9.0, )"
+              "version": "[4.10.0, )"
             },
             "Castle.Windsor.MsDependencyInjection": {
               "target": "Package",
@@ -535,23 +535,23 @@
           "dependencies": {
             "Abp.AspNetCore": {
               "target": "Package",
-              "version": "[4.9.0, )"
+              "version": "[4.10.0, )"
             },
             "Abp.AspNetCore.SignalR": {
               "target": "Package",
-              "version": "[4.9.0, )"
+              "version": "[4.10.0, )"
             },
             "Abp.HangFire.AspNetCore": {
               "target": "Package",
-              "version": "[4.9.0, )"
+              "version": "[4.10.0, )"
             },
             "Abp.RedisCache": {
               "target": "Package",
-              "version": "[4.9.0, )"
+              "version": "[4.10.0, )"
             },
             "Abp.ZeroCore.IdentityServer4": {
               "target": "Package",
-              "version": "[4.9.0, )"
+              "version": "[4.10.0, )"
             },
             "Hangfire.SqlServer": {
               "target": "Package",
@@ -649,7 +649,7 @@
           "dependencies": {
             "Abp.Castle.Log4Net": {
               "target": "Package",
-              "version": "[4.9.0, )"
+              "version": "[4.10.0, )"
             },
             "Microsoft.AspNetCore": {
               "target": "Package",

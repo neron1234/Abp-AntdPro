@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.2": {
-      "Abp/4.9.0": {
+      "Abp/4.10.0": {
         "type": "package",
         "dependencies": {
           "Castle.Core": "4.4.0",
@@ -32,10 +32,10 @@
           "lib/netstandard2.0/Abp.dll": {}
         }
       },
-      "Abp.AutoMapper/4.9.0": {
+      "Abp.AutoMapper/4.10.0": {
         "type": "package",
         "dependencies": {
-          "Abp": "4.9.0",
+          "Abp": "4.10.0",
           "AutoMapper": "8.1.1",
           "AutoMapper.Collection": "5.0.0"
         },
@@ -46,10 +46,10 @@
           "lib/netstandard2.0/Abp.AutoMapper.dll": {}
         }
       },
-      "Abp.EntityFramework.Common/4.9.0": {
+      "Abp.EntityFramework.Common/4.10.0": {
         "type": "package",
         "dependencies": {
-          "Abp": "4.9.0"
+          "Abp": "4.10.0"
         },
         "compile": {
           "lib/netstandard2.0/Abp.EntityFramework.Common.dll": {}
@@ -58,10 +58,10 @@
           "lib/netstandard2.0/Abp.EntityFramework.Common.dll": {}
         }
       },
-      "Abp.EntityFrameworkCore/4.9.0": {
+      "Abp.EntityFrameworkCore/4.10.0": {
         "type": "package",
         "dependencies": {
-          "Abp.EntityFramework.Common": "4.9.0",
+          "Abp.EntityFramework.Common": "4.10.0",
           "Microsoft.EntityFrameworkCore": "2.2.4",
           "Microsoft.EntityFrameworkCore.Relational": "2.2.4"
         },
@@ -72,10 +72,10 @@
           "lib/netstandard2.0/Abp.EntityFrameworkCore.dll": {}
         }
       },
-      "Abp.MailKit/4.9.0": {
+      "Abp.MailKit/4.10.0": {
         "type": "package",
         "dependencies": {
-          "Abp": "4.9.0",
+          "Abp": "4.10.0",
           "MailKit": "2.2.0",
           "System.Runtime": "4.3.1"
         },
@@ -86,10 +86,10 @@
           "lib/netstandard2.0/Abp.MailKit.dll": {}
         }
       },
-      "Abp.Zero.Common/4.9.0": {
+      "Abp.Zero.Common/4.10.0": {
         "type": "package",
         "dependencies": {
-          "Abp": "4.9.0"
+          "Abp": "4.10.0"
         },
         "compile": {
           "lib/netstandard2.0/Abp.Zero.Common.dll": {}
@@ -98,10 +98,10 @@
           "lib/netstandard2.0/Abp.Zero.Common.dll": {}
         }
       },
-      "Abp.Zero.Ldap/4.9.0": {
+      "Abp.Zero.Ldap/4.10.0": {
         "type": "package",
         "dependencies": {
-          "Abp.Zero.Common": "4.9.0",
+          "Abp.Zero.Common": "4.10.0",
           "System.DirectoryServices.AccountManagement": "4.5.0",
           "System.DirectoryServices.Protocols": "4.5.0"
         },
@@ -112,10 +112,10 @@
           "lib/netstandard2.0/Abp.Zero.Ldap.dll": {}
         }
       },
-      "Abp.ZeroCore/4.9.0": {
+      "Abp.ZeroCore/4.10.0": {
         "type": "package",
         "dependencies": {
-          "Abp.Zero.Common": "4.9.0",
+          "Abp.Zero.Common": "4.10.0",
           "Microsoft.AspNetCore.Identity": "2.2.0"
         },
         "compile": {
@@ -125,11 +125,11 @@
           "lib/netstandard2.0/Abp.ZeroCore.dll": {}
         }
       },
-      "Abp.ZeroCore.EntityFrameworkCore/4.9.0": {
+      "Abp.ZeroCore.EntityFrameworkCore/4.10.0": {
         "type": "package",
         "dependencies": {
-          "Abp.EntityFrameworkCore": "4.9.0",
-          "Abp.ZeroCore": "4.9.0"
+          "Abp.EntityFrameworkCore": "4.10.0",
+          "Abp.ZeroCore": "4.10.0"
         },
         "compile": {
           "lib/netstandard2.0/Abp.ZeroCore.EntityFrameworkCore.dll": {}
@@ -138,11 +138,11 @@
           "lib/netstandard2.0/Abp.ZeroCore.EntityFrameworkCore.dll": {}
         }
       },
-      "Abp.ZeroCore.IdentityServer4/4.9.0": {
+      "Abp.ZeroCore.IdentityServer4/4.10.0": {
         "type": "package",
         "dependencies": {
-          "Abp.AutoMapper": "4.9.0",
-          "Abp.ZeroCore": "4.9.0",
+          "Abp.AutoMapper": "4.10.0",
+          "Abp.ZeroCore": "4.10.0",
           "IdentityServer4": "2.5.0",
           "IdentityServer4.AspNetIdentity": "2.5.0"
         },
@@ -153,11 +153,11 @@
           "lib/netstandard2.0/Abp.ZeroCore.IdentityServer4.dll": {}
         }
       },
-      "Abp.ZeroCore.IdentityServer4.EntityFrameworkCore/4.9.0": {
+      "Abp.ZeroCore.IdentityServer4.EntityFrameworkCore/4.10.0": {
         "type": "package",
         "dependencies": {
-          "Abp.ZeroCore.EntityFrameworkCore": "4.9.0",
-          "Abp.ZeroCore.IdentityServer4": "4.9.0"
+          "Abp.ZeroCore.EntityFrameworkCore": "4.10.0",
+          "Abp.ZeroCore.IdentityServer4": "4.10.0"
         },
         "compile": {
           "lib/netstandard2.0/Abp.ZeroCore.IdentityServer4.EntityFrameworkCore.dll": {}
@@ -3438,10 +3438,10 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
         "dependencies": {
-          "Abp.AutoMapper": "4.9.0",
-          "Abp.MailKit": "4.9.0",
-          "Abp.Zero.Ldap": "4.9.0",
-          "Abp.ZeroCore.IdentityServer4.EntityFrameworkCore": "4.9.0",
+          "Abp.AutoMapper": "4.10.0",
+          "Abp.MailKit": "4.10.0",
+          "Abp.Zero.Ldap": "4.10.0",
+          "Abp.ZeroCore.IdentityServer4.EntityFrameworkCore": "4.10.0",
           "Castle.Windsor.MsDependencyInjection": "3.3.1",
           "Microsoft.Extensions.Configuration.EnvironmentVariables": "3.0.0",
           "Microsoft.Extensions.Configuration.Json": "3.0.0",
@@ -3464,9 +3464,9 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
         "dependencies": {
-          "Abp": "4.9.0",
-          "Abp.Zero.Common": "4.9.0",
-          "Abp.ZeroCore": "4.9.0"
+          "Abp": "4.10.0",
+          "Abp.Zero.Common": "4.10.0",
+          "Abp.ZeroCore": "4.10.0"
         },
         "compile": {
           "bin/placeholder/TuDou.Grace.Core.Shared.dll": {}
@@ -3478,154 +3478,154 @@
     }
   },
   "libraries": {
-    "Abp/4.9.0": {
-      "sha512": "KCZeDwJjPIWqrKJHY36OH+A2Z49fhJGQVgkPyrdzX4gcc12O5vQwlDq0OH4vpGaUAt8dbR5nfEKzS2PheKbmZg==",
+    "Abp/4.10.0": {
+      "sha512": "59sQP7mAlDuF2CsQe+w2r+th+9XtkZhXGTKRHohTwYSLzntFWtKt+LGAgZOzeQeISh++rV30s3Jfzwro+9fr/g==",
       "type": "package",
-      "path": "abp/4.9.0",
+      "path": "abp/4.10.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "abp.4.9.0.nupkg.sha512",
+        "abp.4.10.0.nupkg.sha512",
         "abp.nuspec",
         "lib/netstandard2.0/Abp.dll",
         "lib/netstandard2.0/Abp.pdb",
         "lib/netstandard2.0/Abp.xml"
       ]
     },
-    "Abp.AutoMapper/4.9.0": {
-      "sha512": "Wwz2tsgcew/qPps3tiV7suLpMZ7/h5vgGGxSTUiCV7btK/2mssM7vsx8glGe4CBPs5juFJ6oBHmRN5AJJAAHzQ==",
+    "Abp.AutoMapper/4.10.0": {
+      "sha512": "LpeQrPDkU1kvOgU4PkV6OtYc1D8Qc9cUmLo5nrlBgdgDf1rhAdq1OrkkvwgvqahpFFR8r4MiGbLTtoHMrMlcIA==",
       "type": "package",
-      "path": "abp.automapper/4.9.0",
+      "path": "abp.automapper/4.10.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "abp.automapper.4.9.0.nupkg.sha512",
+        "abp.automapper.4.10.0.nupkg.sha512",
         "abp.automapper.nuspec",
         "lib/netstandard2.0/Abp.AutoMapper.dll",
         "lib/netstandard2.0/Abp.AutoMapper.pdb",
         "lib/netstandard2.0/Abp.AutoMapper.xml"
       ]
     },
-    "Abp.EntityFramework.Common/4.9.0": {
-      "sha512": "A2QB/ENPwzEVxNCsWHD/bT3NM+yy4ol2Hpk754HgQ0YPHIW3t/2VmJRsgPp+PWGZ4smeIsPlUCH7LVqUrIsPRw==",
+    "Abp.EntityFramework.Common/4.10.0": {
+      "sha512": "ArIFcFNHS8rWzTJP9OcvWnUleUNe86oEUwTn4swTDYccDVSyrhUv5bfFV8mLpYm9p9Y6WrybBxYs6yuic+fgeg==",
       "type": "package",
-      "path": "abp.entityframework.common/4.9.0",
+      "path": "abp.entityframework.common/4.10.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "abp.entityframework.common.4.9.0.nupkg.sha512",
+        "abp.entityframework.common.4.10.0.nupkg.sha512",
         "abp.entityframework.common.nuspec",
         "lib/netstandard2.0/Abp.EntityFramework.Common.dll",
         "lib/netstandard2.0/Abp.EntityFramework.Common.pdb",
         "lib/netstandard2.0/Abp.EntityFramework.Common.xml"
       ]
     },
-    "Abp.EntityFrameworkCore/4.9.0": {
-      "sha512": "CGKlz3LOOJqoxsw7yZ3b0e4vfzSz9GfE3K8WssY+NruF2Sid55VjETinXm3iLeoeUJM58itMGuBwnNqG8ZrjLA==",
+    "Abp.EntityFrameworkCore/4.10.0": {
+      "sha512": "qJXw5qJ3pw/ZR7uLFUuniX0i3NAHvQcgYcwmAyPb9Isg+raHSXDgf26sVxRN8D0ZHZ3OAGeRTb8snIl74HIbkg==",
       "type": "package",
-      "path": "abp.entityframeworkcore/4.9.0",
+      "path": "abp.entityframeworkcore/4.10.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "abp.entityframeworkcore.4.9.0.nupkg.sha512",
+        "abp.entityframeworkcore.4.10.0.nupkg.sha512",
         "abp.entityframeworkcore.nuspec",
         "lib/netstandard2.0/Abp.EntityFrameworkCore.dll",
         "lib/netstandard2.0/Abp.EntityFrameworkCore.pdb",
         "lib/netstandard2.0/Abp.EntityFrameworkCore.xml"
       ]
     },
-    "Abp.MailKit/4.9.0": {
-      "sha512": "/z8gA9zyN0S2zqqc9UHwJVtw/dOdL79VVhVClgrry8N84QM276+9xbY1XnrFf7meG0LcJvvzsbGPhyz5Xwpj5Q==",
+    "Abp.MailKit/4.10.0": {
+      "sha512": "ESjyYkpoCE0cS7KLBk9eK9llhd70344qIekrKSIQ5yC/wrgnMf8HMcLlJf8sREyA8bDzD0BIdas1MGsc1vKx+w==",
       "type": "package",
-      "path": "abp.mailkit/4.9.0",
+      "path": "abp.mailkit/4.10.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "abp.mailkit.4.9.0.nupkg.sha512",
+        "abp.mailkit.4.10.0.nupkg.sha512",
         "abp.mailkit.nuspec",
         "lib/netstandard2.0/Abp.MailKit.dll",
         "lib/netstandard2.0/Abp.MailKit.pdb",
         "lib/netstandard2.0/Abp.MailKit.xml"
       ]
     },
-    "Abp.Zero.Common/4.9.0": {
-      "sha512": "gzoCbBV1vhpjL3fnRCb9C6kgkEctYWE3M4FYVARQCh51bWy1gNOaqHkG3JlVLZaAdz2LWNS/y91lw2RAoS+9xw==",
+    "Abp.Zero.Common/4.10.0": {
+      "sha512": "AaKmVBpGkQJs27hccnJCbf2nGnotQWe89mB4QM8AkjF2xfM9ZYlYvQVLacDq9X4A3QQfhdcxJK6Q16Xo2zqnkg==",
       "type": "package",
-      "path": "abp.zero.common/4.9.0",
+      "path": "abp.zero.common/4.10.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "abp.zero.common.4.9.0.nupkg.sha512",
+        "abp.zero.common.4.10.0.nupkg.sha512",
         "abp.zero.common.nuspec",
         "lib/netstandard2.0/Abp.Zero.Common.dll",
         "lib/netstandard2.0/Abp.Zero.Common.pdb",
         "lib/netstandard2.0/Abp.Zero.Common.xml"
       ]
     },
-    "Abp.Zero.Ldap/4.9.0": {
-      "sha512": "bxwrVmCoowuCNKocuiqUFfSU7sBV8U7eRs2/FM8VG07QGZ1WyPtECp9lcO5fZmXDbLZK4t5vO4RWWyoqt5A90Q==",
+    "Abp.Zero.Ldap/4.10.0": {
+      "sha512": "44Klp9kvwe3hOnE8daVzi+EDWJ4+8vDfqPGTR+UvJNRwhJYK0LUsNsOa9RJ8VCcQSLFhKR/bW3O0q5BykAJRzA==",
       "type": "package",
-      "path": "abp.zero.ldap/4.9.0",
+      "path": "abp.zero.ldap/4.10.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "abp.zero.ldap.4.9.0.nupkg.sha512",
+        "abp.zero.ldap.4.10.0.nupkg.sha512",
         "abp.zero.ldap.nuspec",
         "lib/netstandard2.0/Abp.Zero.Ldap.dll",
         "lib/netstandard2.0/Abp.Zero.Ldap.pdb",
         "lib/netstandard2.0/Abp.Zero.Ldap.xml"
       ]
     },
-    "Abp.ZeroCore/4.9.0": {
-      "sha512": "xyIJXYLddJVqeSkqubHA9dOCrySIa+MrE3XpOd88NzTjOO+qXp2Ya/tcLjCVM1rUf6iAOaH57SXWo3aLotYFcA==",
+    "Abp.ZeroCore/4.10.0": {
+      "sha512": "yKZGjdpyoA2YL6Qj7vOUG4eJcC/Ce1ZltfK/DB+Aixl/RB4eJyW1etYlI6s6Q3TNpfWOt02YonhnBunL0AtN1A==",
       "type": "package",
-      "path": "abp.zerocore/4.9.0",
+      "path": "abp.zerocore/4.10.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "abp.zerocore.4.9.0.nupkg.sha512",
+        "abp.zerocore.4.10.0.nupkg.sha512",
         "abp.zerocore.nuspec",
         "lib/netstandard2.0/Abp.ZeroCore.dll",
         "lib/netstandard2.0/Abp.ZeroCore.pdb",
         "lib/netstandard2.0/Abp.ZeroCore.xml"
       ]
     },
-    "Abp.ZeroCore.EntityFrameworkCore/4.9.0": {
-      "sha512": "l0zt5EnPL5xyoo+gGtJc4uQS6xTTRIN9aXnA8kHozd24BRKBmvxtUePnVJ6zB5EbtmJDMFAYXaZ7T3Ryb2gOrA==",
+    "Abp.ZeroCore.EntityFrameworkCore/4.10.0": {
+      "sha512": "o5HZaQ7lzyEfDC6JSUdPfe/ata5WP8O51+TpHV4bJZ2O4EltIrvtbQccheQeuw0K1nSMR57d2+0DJ5drTLmA9Q==",
       "type": "package",
-      "path": "abp.zerocore.entityframeworkcore/4.9.0",
+      "path": "abp.zerocore.entityframeworkcore/4.10.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "abp.zerocore.entityframeworkcore.4.9.0.nupkg.sha512",
+        "abp.zerocore.entityframeworkcore.4.10.0.nupkg.sha512",
         "abp.zerocore.entityframeworkcore.nuspec",
         "lib/netstandard2.0/Abp.ZeroCore.EntityFrameworkCore.dll",
         "lib/netstandard2.0/Abp.ZeroCore.EntityFrameworkCore.pdb",
         "lib/netstandard2.0/Abp.ZeroCore.EntityFrameworkCore.xml"
       ]
     },
-    "Abp.ZeroCore.IdentityServer4/4.9.0": {
-      "sha512": "RSJVgD9XL/msozw/N98F7fO23SJdvjip446XghV+L+7e3t2ndmwIfn6zPLO79OV2GCy5meBs/Nv+/CZGDsfsqg==",
+    "Abp.ZeroCore.IdentityServer4/4.10.0": {
+      "sha512": "ArkUYWStn+H7aEpPHUt5UUycD+awlbb2BYsgI2npMwDYn6EkjFg/EIzpZLly4GnLSOw+hmS8rMcKOnx6haWz6A==",
       "type": "package",
-      "path": "abp.zerocore.identityserver4/4.9.0",
+      "path": "abp.zerocore.identityserver4/4.10.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "abp.zerocore.identityserver4.4.9.0.nupkg.sha512",
+        "abp.zerocore.identityserver4.4.10.0.nupkg.sha512",
         "abp.zerocore.identityserver4.nuspec",
         "lib/netstandard2.0/Abp.ZeroCore.IdentityServer4.dll",
         "lib/netstandard2.0/Abp.ZeroCore.IdentityServer4.pdb",
         "lib/netstandard2.0/Abp.ZeroCore.IdentityServer4.xml"
       ]
     },
-    "Abp.ZeroCore.IdentityServer4.EntityFrameworkCore/4.9.0": {
-      "sha512": "hePHUur6AbEv9J5GONOoCEAVcN1Bs78bRctccxdE4imL4GpTN7RaidPUoedhuOOBvUTtHo2mwJuGKauYWR6zfg==",
+    "Abp.ZeroCore.IdentityServer4.EntityFrameworkCore/4.10.0": {
+      "sha512": "5Y0ODSUkMH0nHe9tQDEtYwbYed5Lg40kW7+27ZWzJUmPe+eQZDX00g0kS2DkQZH5G6WiehDAuKYPebaCczRH+Q==",
       "type": "package",
-      "path": "abp.zerocore.identityserver4.entityframeworkcore/4.9.0",
+      "path": "abp.zerocore.identityserver4.entityframeworkcore/4.10.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "abp.zerocore.identityserver4.entityframeworkcore.4.9.0.nupkg.sha512",
+        "abp.zerocore.identityserver4.entityframeworkcore.4.10.0.nupkg.sha512",
         "abp.zerocore.identityserver4.entityframeworkcore.nuspec",
         "lib/netstandard2.0/Abp.ZeroCore.IdentityServer4.EntityFrameworkCore.dll",
         "lib/netstandard2.0/Abp.ZeroCore.IdentityServer4.EntityFrameworkCore.pdb",

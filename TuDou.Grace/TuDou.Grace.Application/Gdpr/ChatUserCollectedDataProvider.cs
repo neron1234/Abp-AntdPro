@@ -7,6 +7,7 @@ using Abp.AutoMapper;
 using Abp.Dependency;
 using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
+using Abp.ObjectMapping;
 using Microsoft.EntityFrameworkCore;
 using TuDou.Grace.Chat;
 using TuDou.Grace.Chat.Dto;
@@ -24,7 +25,7 @@ namespace TuDou.Grace.Gdpr
         private readonly IUnitOfWorkManager _unitOfWorkManager;
         private readonly IRepository<UserAccount, long> _userAccountRepository;
         private readonly IRepository<Tenant> _tenantRepository;
-
+        private readonly IObjectMapper ObjectMapper;
         public ChatUserCollectedDataProvider(
             IRepository<ChatMessage, long> chatMessageRepository,
             IChatMessageListExcelExporter chatMessageListExcelExporter,
@@ -107,7 +108,7 @@ namespace TuDou.Grace.Gdpr
                                            Messages = messageGrouped
                                        }).ToListAsync();
 
-            return conversations.ToDictionary(c => new UserIdentifier(c.TargetTenantId, c.TargetUserId), c => c.Messages.MapTo<List<ChatMessageExportDto>>());
+            return conversations.ToDictionary(c => new UserIdentifier(c.TargetTenantId, c.TargetUserId), c => ObjectMapper.Map<List<ChatMessageExportDto>>(c.Messages));
         }
     }
 }

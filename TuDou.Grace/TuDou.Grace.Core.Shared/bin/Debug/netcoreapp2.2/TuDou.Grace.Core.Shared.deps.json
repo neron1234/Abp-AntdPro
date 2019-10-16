@@ -8,15 +8,15 @@
     ".NETCoreApp,Version=v2.2": {
       "TuDou.Grace.Core.Shared/1.0.0": {
         "dependencies": {
-          "Abp": "4.9.0",
-          "Abp.Zero.Common": "4.9.0",
-          "Abp.ZeroCore": "4.9.0"
+          "Abp": "4.10.0",
+          "Abp.Zero.Common": "4.10.0",
+          "Abp.ZeroCore": "4.10.0"
         },
         "runtime": {
           "TuDou.Grace.Core.Shared.dll": {}
         }
       },
-      "Abp/4.9.0": {
+      "Abp/4.10.0": {
         "dependencies": {
           "Castle.Core": "4.4.0",
           "Castle.LoggingFacility": "5.0.0",
@@ -40,31 +40,31 @@
         },
         "runtime": {
           "lib/netstandard2.0/Abp.dll": {
-            "assemblyVersion": "4.9.0.0",
-            "fileVersion": "4.9.0.0"
+            "assemblyVersion": "4.10.0.0",
+            "fileVersion": "4.10.0.0"
           }
         }
       },
-      "Abp.Zero.Common/4.9.0": {
+      "Abp.Zero.Common/4.10.0": {
         "dependencies": {
-          "Abp": "4.9.0"
+          "Abp": "4.10.0"
         },
         "runtime": {
           "lib/netstandard2.0/Abp.Zero.Common.dll": {
-            "assemblyVersion": "4.9.0.0",
-            "fileVersion": "4.9.0.0"
+            "assemblyVersion": "4.10.0.0",
+            "fileVersion": "4.10.0.0"
           }
         }
       },
-      "Abp.ZeroCore/4.9.0": {
+      "Abp.ZeroCore/4.10.0": {
         "dependencies": {
-          "Abp.Zero.Common": "4.9.0",
+          "Abp.Zero.Common": "4.10.0",
           "Microsoft.AspNetCore.Identity": "2.2.0"
         },
         "runtime": {
           "lib/netstandard2.0/Abp.ZeroCore.dll": {
-            "assemblyVersion": "4.9.0.0",
-            "fileVersion": "4.9.0.0"
+            "assemblyVersion": "4.10.0.0",
+            "fileVersion": "4.10.0.0"
           }
         }
       },
@@ -1154,26 +1154,26 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Abp/4.9.0": {
+    "Abp/4.10.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-KCZeDwJjPIWqrKJHY36OH+A2Z49fhJGQVgkPyrdzX4gcc12O5vQwlDq0OH4vpGaUAt8dbR5nfEKzS2PheKbmZg==",
-      "path": "abp/4.9.0",
-      "hashPath": "abp.4.9.0.nupkg.sha512"
+      "sha512": "sha512-59sQP7mAlDuF2CsQe+w2r+th+9XtkZhXGTKRHohTwYSLzntFWtKt+LGAgZOzeQeISh++rV30s3Jfzwro+9fr/g==",
+      "path": "abp/4.10.0",
+      "hashPath": "abp.4.10.0.nupkg.sha512"
     },
-    "Abp.Zero.Common/4.9.0": {
+    "Abp.Zero.Common/4.10.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-gzoCbBV1vhpjL3fnRCb9C6kgkEctYWE3M4FYVARQCh51bWy1gNOaqHkG3JlVLZaAdz2LWNS/y91lw2RAoS+9xw==",
-      "path": "abp.zero.common/4.9.0",
-      "hashPath": "abp.zero.common.4.9.0.nupkg.sha512"
+      "sha512": "sha512-AaKmVBpGkQJs27hccnJCbf2nGnotQWe89mB4QM8AkjF2xfM9ZYlYvQVLacDq9X4A3QQfhdcxJK6Q16Xo2zqnkg==",
+      "path": "abp.zero.common/4.10.0",
+      "hashPath": "abp.zero.common.4.10.0.nupkg.sha512"
     },
-    "Abp.ZeroCore/4.9.0": {
+    "Abp.ZeroCore/4.10.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-xyIJXYLddJVqeSkqubHA9dOCrySIa+MrE3XpOd88NzTjOO+qXp2Ya/tcLjCVM1rUf6iAOaH57SXWo3aLotYFcA==",
-      "path": "abp.zerocore/4.9.0",
-      "hashPath": "abp.zerocore.4.9.0.nupkg.sha512"
+      "sha512": "sha512-yKZGjdpyoA2YL6Qj7vOUG4eJcC/Ce1ZltfK/DB+Aixl/RB4eJyW1etYlI6s6Q3TNpfWOt02YonhnBunL0AtN1A==",
+      "path": "abp.zerocore/4.10.0",
+      "hashPath": "abp.zerocore.4.10.0.nupkg.sha512"
     },
     "Castle.Core/4.4.0": {
       "type": "package",

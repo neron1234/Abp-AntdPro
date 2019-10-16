@@ -270,7 +270,7 @@ namespace TuDou.Grace.Authorization.Users
             CheckErrors(await UserManager.UpdateAsync(user));
 
             //Update roles
-            CheckErrors(await UserManager.SetRoles(user, input.AssignedRoleNames));
+            CheckErrors(await UserManager.SetRolesAsync(user, input.AssignedRoleNames));
 
             //update organization units
             await UserManager.SetOrganizationUnitsAsync(user, input.OrganizationUnits.ToArray());

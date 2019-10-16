@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.2": {
-      "Abp/4.9.0": {
+      "Abp/4.10.0": {
         "type": "package",
         "dependencies": {
           "Castle.Core": "4.4.0",
@@ -32,10 +32,10 @@
           "lib/netstandard2.0/Abp.dll": {}
         }
       },
-      "Abp.Zero.Common/4.9.0": {
+      "Abp.Zero.Common/4.10.0": {
         "type": "package",
         "dependencies": {
-          "Abp": "4.9.0"
+          "Abp": "4.10.0"
         },
         "compile": {
           "lib/netstandard2.0/Abp.Zero.Common.dll": {}
@@ -44,10 +44,10 @@
           "lib/netstandard2.0/Abp.Zero.Common.dll": {}
         }
       },
-      "Abp.ZeroCore/4.9.0": {
+      "Abp.ZeroCore/4.10.0": {
         "type": "package",
         "dependencies": {
-          "Abp.Zero.Common": "4.9.0",
+          "Abp.Zero.Common": "4.10.0",
           "Microsoft.AspNetCore.Identity": "2.2.0"
         },
         "compile": {
@@ -1854,42 +1854,42 @@
     }
   },
   "libraries": {
-    "Abp/4.9.0": {
-      "sha512": "KCZeDwJjPIWqrKJHY36OH+A2Z49fhJGQVgkPyrdzX4gcc12O5vQwlDq0OH4vpGaUAt8dbR5nfEKzS2PheKbmZg==",
+    "Abp/4.10.0": {
+      "sha512": "59sQP7mAlDuF2CsQe+w2r+th+9XtkZhXGTKRHohTwYSLzntFWtKt+LGAgZOzeQeISh++rV30s3Jfzwro+9fr/g==",
       "type": "package",
-      "path": "abp/4.9.0",
+      "path": "abp/4.10.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "abp.4.9.0.nupkg.sha512",
+        "abp.4.10.0.nupkg.sha512",
         "abp.nuspec",
         "lib/netstandard2.0/Abp.dll",
         "lib/netstandard2.0/Abp.pdb",
         "lib/netstandard2.0/Abp.xml"
       ]
     },
-    "Abp.Zero.Common/4.9.0": {
-      "sha512": "gzoCbBV1vhpjL3fnRCb9C6kgkEctYWE3M4FYVARQCh51bWy1gNOaqHkG3JlVLZaAdz2LWNS/y91lw2RAoS+9xw==",
+    "Abp.Zero.Common/4.10.0": {
+      "sha512": "AaKmVBpGkQJs27hccnJCbf2nGnotQWe89mB4QM8AkjF2xfM9ZYlYvQVLacDq9X4A3QQfhdcxJK6Q16Xo2zqnkg==",
       "type": "package",
-      "path": "abp.zero.common/4.9.0",
+      "path": "abp.zero.common/4.10.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "abp.zero.common.4.9.0.nupkg.sha512",
+        "abp.zero.common.4.10.0.nupkg.sha512",
         "abp.zero.common.nuspec",
         "lib/netstandard2.0/Abp.Zero.Common.dll",
         "lib/netstandard2.0/Abp.Zero.Common.pdb",
         "lib/netstandard2.0/Abp.Zero.Common.xml"
       ]
     },
-    "Abp.ZeroCore/4.9.0": {
-      "sha512": "xyIJXYLddJVqeSkqubHA9dOCrySIa+MrE3XpOd88NzTjOO+qXp2Ya/tcLjCVM1rUf6iAOaH57SXWo3aLotYFcA==",
+    "Abp.ZeroCore/4.10.0": {
+      "sha512": "yKZGjdpyoA2YL6Qj7vOUG4eJcC/Ce1ZltfK/DB+Aixl/RB4eJyW1etYlI6s6Q3TNpfWOt02YonhnBunL0AtN1A==",
       "type": "package",
-      "path": "abp.zerocore/4.9.0",
+      "path": "abp.zerocore/4.10.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "abp.zerocore.4.9.0.nupkg.sha512",
+        "abp.zerocore.4.10.0.nupkg.sha512",
         "abp.zerocore.nuspec",
         "lib/netstandard2.0/Abp.ZeroCore.dll",
         "lib/netstandard2.0/Abp.ZeroCore.pdb",
@@ -6318,9 +6318,9 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
-      "Abp >= 4.9.0",
-      "Abp.Zero.Common >= 4.9.0",
-      "Abp.ZeroCore >= 4.9.0",
+      "Abp >= 4.10.0",
+      "Abp.Zero.Common >= 4.10.0",
+      "Abp.ZeroCore >= 4.10.0",
       "Microsoft.NETCore.App >= 2.2.0"
     ]
   },
@@ -6367,15 +6367,15 @@
         "dependencies": {
           "Abp": {
             "target": "Package",
-            "version": "[4.9.0, )"
+            "version": "[4.10.0, )"
           },
           "Abp.Zero.Common": {
             "target": "Package",
-            "version": "[4.9.0, )"
+            "version": "[4.10.0, )"
           },
           "Abp.ZeroCore": {
             "target": "Package",
-            "version": "[4.9.0, )"
+            "version": "[4.10.0, )"
           },
           "Microsoft.NETCore.App": {
             "suppressParent": "All",
