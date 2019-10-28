@@ -1,7 +1,7 @@
 import AppComponentBase from "@/components/AppComponentBase";
 import { OrganizationUnitsStateType } from "@/models/admin/organizationUnits";
 import { connect } from "dva";
-import React from 'react';
+import React, { RefObject } from 'react';
 import CreateOrUpdateOrganizationUnit from './components/createOrUpdateOrganizationUnit';
 import { ConnectState } from "@/models/connect";
 import { AnyAction, Dispatch } from "redux";
@@ -13,8 +13,8 @@ import { createTree } from "@/utils/utils";
 import { GetOrganizationUnitRolesInput } from "@/services/organizationunits/dtos/getOrganizationUnitRolesInput";
 import { GetOrganizationUnitUsersInput } from "@/services/organizationunits/dtos/getOrganizationUnitUsersInput";
 import { AntTreeNodeMouseEvent } from "antd/lib/tree";
-import AddMember from './components/addMember';
 import 'react-contexify/dist/ReactContexify.min.css';
+import AddMember from "./components/addMember";
 const { TabPane } = Tabs;
 const { DirectoryTree } = Tree;
 const { confirm } = Modal;
@@ -37,6 +37,7 @@ export interface OrganizationUnitsStates {
 class OrganizationUnits extends AppComponentBase<OrganizationUnitsProps, OrganizationUnitsStates> {
   // ref
   createTreeNodeModalRef: any = React.createRef();
+  addMemberModalRef: RefObject<AddMember> = React.createRef<AddMember>();
   // modal类型
   modalType?: ModalType;
   organizationUnitSelectedId: number | null = null;
@@ -147,6 +148,15 @@ class OrganizationUnits extends AppComponentBase<OrganizationUnitsProps, Organiz
     this.setState({
       addMemberModalVisible:!this.state.addMemberModalVisible
     })
+  }
+  // 打开AddMerBermodal
+  addMermberModalOpen=()=>{
+    console.log(this.addMemberModalRef.current);
+    this.addMemberModalRef.current!.findUsers();
+     this.addMermberModal();
+  }
+  addMermberModalOkHandler=()=>{
+
   }
   // 树右键菜单
   treeRightClickHandler = (e: AntTreeNodeMouseEvent) => {
@@ -279,7 +289,7 @@ class OrganizationUnits extends AppComponentBase<OrganizationUnitsProps, Organiz
                   {
                     this.organizationUnitSelectedId == undefined ? (<p>选择一个组织成员</p>) :
                       (<div><Col style={{ textAlign: 'right' }}>
-                        <Button onClick={this.addMermberModal} icon="plus" type="primary">添加组织成员</Button>
+                        <Button onClick={this.addMermberModalOpen} icon="plus" type="primary">添加组织成员</Button>
                       </Col>
                         <Table
                           dataSource={organizationUnitUsers == undefined ? [] : organizationUnitUsers.items}
@@ -313,9 +323,17 @@ class OrganizationUnits extends AppComponentBase<OrganizationUnitsProps, Organiz
                 visible={creatrOrUpdateModalVisible}
                 onCancel={this.createOrUpdateModal}
                 onOk={this.openCreateOrUpdateModalOk} />
-              <AddMember
-              visible={addMemberModalVisible}
-              />
+            <AddMember
+            organizationUnitId={this.organizationUnitSelectedId}
+            ref={this.addMemberModalRef}
+            dispatch={this.props.dispatch}
+            organizationUnits={this.props.organizationUnits}
+            visible={addMemberModalVisible}
+            onCancel={()=>{
+              this.addMermberModal()
+            }}
+
+            onOk={this.addMermberModalOkHandler}/>
             </Card>
           </Col>
         </Row>

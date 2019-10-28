@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\个人程序文件\\个人项目\\Abp+AntdPro\\TuDou.Grace\\TuDou.Grace.Core.Shared\\TuDou.Grace.Core.Shared.csproj": {}
+    "D:\\个人程序文件\\个人项目\\AbpZero-AntdPro\\TuDou.Grace\\TuDou.Grace.Core.Shared\\TuDou.Grace.Core.Shared.csproj": {}
   },
   "projects": {
-    "D:\\个人程序文件\\个人项目\\Abp+AntdPro\\TuDou.Grace\\TuDou.Grace.Core.Shared\\TuDou.Grace.Core.Shared.csproj": {
+    "D:\\个人程序文件\\个人项目\\AbpZero-AntdPro\\TuDou.Grace\\TuDou.Grace.Core.Shared\\TuDou.Grace.Core.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\个人程序文件\\个人项目\\Abp+AntdPro\\TuDou.Grace\\TuDou.Grace.Core.Shared\\TuDou.Grace.Core.Shared.csproj",
+        "projectUniqueName": "D:\\个人程序文件\\个人项目\\AbpZero-AntdPro\\TuDou.Grace\\TuDou.Grace.Core.Shared\\TuDou.Grace.Core.Shared.csproj",
         "projectName": "TuDou.Grace.Core.Shared",
-        "projectPath": "D:\\个人程序文件\\个人项目\\Abp+AntdPro\\TuDou.Grace\\TuDou.Grace.Core.Shared\\TuDou.Grace.Core.Shared.csproj",
+        "projectPath": "D:\\个人程序文件\\个人项目\\AbpZero-AntdPro\\TuDou.Grace\\TuDou.Grace.Core.Shared\\TuDou.Grace.Core.Shared.csproj",
         "packagesPath": "C:\\Users\\17137\\.nuget\\packages\\",
-        "outputPath": "D:\\个人程序文件\\个人项目\\Abp+AntdPro\\TuDou.Grace\\TuDou.Grace.Core.Shared\\obj\\",
+        "outputPath": "D:\\个人程序文件\\个人项目\\AbpZero-AntdPro\\TuDou.Grace\\TuDou.Grace.Core.Shared\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

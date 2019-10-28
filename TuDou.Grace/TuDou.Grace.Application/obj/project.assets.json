@@ -10698,11 +10698,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\个人程序文件\\个人项目\\Abp+AntdPro\\TuDou.Grace\\TuDou.Grace.Application\\TuDou.Grace.Application.csproj",
+      "projectUniqueName": "D:\\个人程序文件\\个人项目\\AbpZero-AntdPro\\TuDou.Grace\\TuDou.Grace.Application\\TuDou.Grace.Application.csproj",
       "projectName": "TuDou.Grace.Application",
-      "projectPath": "D:\\个人程序文件\\个人项目\\Abp+AntdPro\\TuDou.Grace\\TuDou.Grace.Application\\TuDou.Grace.Application.csproj",
+      "projectPath": "D:\\个人程序文件\\个人项目\\AbpZero-AntdPro\\TuDou.Grace\\TuDou.Grace.Application\\TuDou.Grace.Application.csproj",
       "packagesPath": "C:\\Users\\17137\\.nuget\\packages\\",
-      "outputPath": "D:\\个人程序文件\\个人项目\\Abp+AntdPro\\TuDou.Grace\\TuDou.Grace.Application\\obj\\",
+      "outputPath": "D:\\个人程序文件\\个人项目\\AbpZero-AntdPro\\TuDou.Grace\\TuDou.Grace.Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -10721,14 +10721,14 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "D:\\个人程序文件\\个人项目\\Abp+AntdPro\\TuDou.Grace\\TuDou.Grace.Application.Shared\\TuDou.Grace.Application.Shared.csproj": {
-              "projectPath": "D:\\个人程序文件\\个人项目\\Abp+AntdPro\\TuDou.Grace\\TuDou.Grace.Application.Shared\\TuDou.Grace.Application.Shared.csproj"
+            "D:\\个人程序文件\\个人项目\\AbpZero-AntdPro\\TuDou.Grace\\TuDou.Grace.Application.Shared\\TuDou.Grace.Application.Shared.csproj": {
+              "projectPath": "D:\\个人程序文件\\个人项目\\AbpZero-AntdPro\\TuDou.Grace\\TuDou.Grace.Application.Shared\\TuDou.Grace.Application.Shared.csproj"
             },
-            "D:\\个人程序文件\\个人项目\\Abp+AntdPro\\TuDou.Grace\\TuDou.Grace.Core\\TuDou.Grace.Core.csproj": {
-              "projectPath": "D:\\个人程序文件\\个人项目\\Abp+AntdPro\\TuDou.Grace\\TuDou.Grace.Core\\TuDou.Grace.Core.csproj"
+            "D:\\个人程序文件\\个人项目\\AbpZero-AntdPro\\TuDou.Grace\\TuDou.Grace.Core\\TuDou.Grace.Core.csproj": {
+              "projectPath": "D:\\个人程序文件\\个人项目\\AbpZero-AntdPro\\TuDou.Grace\\TuDou.Grace.Core\\TuDou.Grace.Core.csproj"
             },
-            "D:\\个人程序文件\\个人项目\\Abp+AntdPro\\TuDou.Grace\\TuDou.Grace.EntityFrameworkCore\\TuDou.Grace.EntityFrameworkCore.csproj": {
-              "projectPath": "D:\\个人程序文件\\个人项目\\Abp+AntdPro\\TuDou.Grace\\TuDou.Grace.EntityFrameworkCore\\TuDou.Grace.EntityFrameworkCore.csproj"
+            "D:\\个人程序文件\\个人项目\\AbpZero-AntdPro\\TuDou.Grace\\TuDou.Grace.EntityFrameworkCore\\TuDou.Grace.EntityFrameworkCore.csproj": {
+              "projectPath": "D:\\个人程序文件\\个人项目\\AbpZero-AntdPro\\TuDou.Grace\\TuDou.Grace.EntityFrameworkCore\\TuDou.Grace.EntityFrameworkCore.csproj"
             }
           }
         }

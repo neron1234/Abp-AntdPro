@@ -6,11 +6,14 @@ import { OrganizationUnitDto } from "@/services/organizationunits/dtos/organizat
 import { PagedResultDto } from "@/shared/dtos/pagedResultDto";
 import { OrganizationUnitUserListDto } from "@/services/organizationunits/dtos/organizationUnitUserListDto";
 import { OrganizationUnitRoleListDto } from "@/services/organizationunits/dtos/organizationUnitRoleListDto";
+import NameValueDto from "@/shared/dtos/nameValueDto";
 
 export interface OrganizationUnitsStateType {
   organizationUnits?: ListResultDto<OrganizationUnitDto>;
   organizationUnitUsers?: PagedResultDto<OrganizationUnitUserListDto>;
   organizationUnitRoles?: PagedResultDto<OrganizationUnitRoleListDto>;
+  findUsers?:PagedResultDto<NameValueDto>;
+  findRoles?:PagedResultDto<NameValueDto>;
 }
 export interface OrganizationUnitsModelType {
   namespace: string;
@@ -46,10 +49,17 @@ const Model: OrganizationUnitsModelType = {
   effects: {
     *findUsers({ payload }, { call, put }) {
       const response = yield call(OrganizationUnitsService.findUsers, payload)
-
+      yield put({
+        type: 'saveFindUsers',
+        payload: response.result
+      })
     },
     *findRoles({ payload }, { call, put }) {
-      const response = yield call(OrganizationUnitsService.findUsers, payload)
+      const response = yield call(OrganizationUnitsService.findRoles, payload)
+      yield put({
+        type: 'saveFindRoles',
+        payload: response.result
+      })
     },
     *getOrganizationUnits({ payload }, { call, put }) {
       const response = yield call(OrganizationUnitsService.getOrganizationUnits, payload)
@@ -104,11 +114,13 @@ const Model: OrganizationUnitsModelType = {
     saveFindUsers(state, { payload }) {
       return ({
         ...state,
+        findUsers:payload
       })
     },
     saveFindRoles(state, { payload }) {
       return ({
         ...state,
+        findRoles:payload
       })
     },
     saveUpdateOrganizationUnit(state, { payload }) {

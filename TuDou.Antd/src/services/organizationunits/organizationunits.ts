@@ -33,14 +33,14 @@ class OrganizationUnitsService {
   };
   async findUsers(input: FindOrganizationUnitUsersInput) {
     return request('api/services/app/OrganizationUnit/FindUsers', {
-      method: "GET",
-      params: input
+      method: "POST",
+      data: input
     });
   };
   async findRoles(input: FindOrganizationUnitRolesInput) {
     return request('api/services/app/OrganizationUnit/FindRoles', {
-      method: "GET",
-      params: input
+      method: "POST",
+      data: input
     });
   };
   async getOrganizationUnitUsers(input: GetOrganizationUnitUsersInput) {

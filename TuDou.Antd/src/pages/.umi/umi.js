@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import findRoute, {
   getUrlQuery,
-} from 'D:/个人程序文件/个人项目/Abp+AntdPro/TuDou.Antd/node_modules/umi-build-dev/lib/findRoute.js';
+} from 'D:/个人程序文件/个人项目/AbpZero-AntdPro/TuDou.Antd/node_modules/umi-build-dev/lib/findRoute.js';
 
 // runtime plugins
 const plugins = require('umi/_runtimePlugin');
@@ -149,17 +149,23 @@ if (!__IS_BROWSER) {
 export { ReactDOMServer };
 export default (__IS_BROWSER ? null : serverRender);
 
-try {
-  // Umi UI Bubble
-  require('../../../node_modules/umi-plugin-ui/lib/bubble').default({
-    port: 3001,
-    path: 'D:/个人程序文件/个人项目/Abp+AntdPro/TuDou.Antd',
-    currentProject: '',
-    isBigfish: undefined,
-  });
-} catch (e) {
-  console.warn('Umi UI render error:', e);
-}
+(() => {
+  try {
+    const ua = window.navigator.userAgent;
+    const isIE = ua.indexOf('MSIE ') > -1 || ua.indexOf('Trident/') > -1;
+    if (isIE) return;
+
+    // Umi UI Bubble
+    require('../../../node_modules/umi-plugin-ui/lib/bubble').default({
+      port: 3000,
+      path: 'D:/个人程序文件/个人项目/AbpZero-AntdPro/TuDou.Antd',
+      currentProject: '',
+      isBigfish: undefined,
+    });
+  } catch (e) {
+    console.warn('Umi UI render error:', e);
+  }
+})();
 
 (() => {
   // Runtime block add component

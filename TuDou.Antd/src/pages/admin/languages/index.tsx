@@ -75,7 +75,7 @@ class Languages extends AppComponentBase<LanguagesProps, LanguagesStates> {
            {
                record.name==languages!.defaultLanguageName?
                <Tag color="#108ee9">默认</Tag>:null
-           } 
+           }
             </div>
          }
       },
@@ -87,14 +87,14 @@ class Languages extends AppComponentBase<LanguagesProps, LanguagesStates> {
            return<div>{new Date(text).toLocaleDateString()}</div>
         }
       }
-    
+
     ];
     return (
       <PageHeaderWrapper >
         <Card>
           <Table
            loading={loading}
-           size="small"
+            size="small"
             bordered
             dataSource={languages == undefined ? [] : languages.items}
             pagination={false}

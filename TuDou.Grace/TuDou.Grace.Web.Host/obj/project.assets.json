@@ -15881,11 +15881,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\个人程序文件\\个人项目\\Abp+AntdPro\\TuDou.Grace\\TuDou.Grace.Web.Host\\TuDou.Grace.Web.Host.csproj",
+      "projectUniqueName": "D:\\个人程序文件\\个人项目\\AbpZero-AntdPro\\TuDou.Grace\\TuDou.Grace.Web.Host\\TuDou.Grace.Web.Host.csproj",
       "projectName": "TuDou.Grace.Web.Host",
-      "projectPath": "D:\\个人程序文件\\个人项目\\Abp+AntdPro\\TuDou.Grace\\TuDou.Grace.Web.Host\\TuDou.Grace.Web.Host.csproj",
+      "projectPath": "D:\\个人程序文件\\个人项目\\AbpZero-AntdPro\\TuDou.Grace\\TuDou.Grace.Web.Host\\TuDou.Grace.Web.Host.csproj",
       "packagesPath": "C:\\Users\\17137\\.nuget\\packages\\",
-      "outputPath": "D:\\个人程序文件\\个人项目\\Abp+AntdPro\\TuDou.Grace\\TuDou.Grace.Web.Host\\obj\\",
+      "outputPath": "D:\\个人程序文件\\个人项目\\AbpZero-AntdPro\\TuDou.Grace\\TuDou.Grace.Web.Host\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -15904,8 +15904,8 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "D:\\个人程序文件\\个人项目\\Abp+AntdPro\\TuDou.Grace\\TuDou.Grace.Web.Core\\TuDou.Grace.Web.Core.csproj": {
-              "projectPath": "D:\\个人程序文件\\个人项目\\Abp+AntdPro\\TuDou.Grace\\TuDou.Grace.Web.Core\\TuDou.Grace.Web.Core.csproj"
+            "D:\\个人程序文件\\个人项目\\AbpZero-AntdPro\\TuDou.Grace\\TuDou.Grace.Web.Core\\TuDou.Grace.Web.Core.csproj": {
+              "projectPath": "D:\\个人程序文件\\个人项目\\AbpZero-AntdPro\\TuDou.Grace\\TuDou.Grace.Web.Core\\TuDou.Grace.Web.Core.csproj"
             }
           }
         }

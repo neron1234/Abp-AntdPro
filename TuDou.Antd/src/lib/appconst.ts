@@ -9,7 +9,7 @@ const AppConsts = {
     encrptedAuthTokenName: 'enc_auth_token',
   },
   defaultPageSize:10,
-  defaultPageIndex:1,
+  defaultPageIndex:0,
   appBaseUrl: process.env.REACT_APP_APP_BASE_URL,
   remoteServiceBaseUrl: process.env.REACT_APP_REMOTE_SERVICE_BASE_URL,
   localeMappings:  [
