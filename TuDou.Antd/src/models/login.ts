@@ -8,7 +8,7 @@ import { setAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
 import AppConsts from '@/lib/appconst';
 
-export interface StateType {
+export interface LoginModalState {
   status?: true | false;
   type?: string;
   resetPasswordModalState?:boolean;
@@ -17,15 +17,15 @@ export interface StateType {
 
 export interface LoginModelType {
   namespace: string;
-  state: StateType;
+  state: LoginModalState;
   effects: {
     login: Effect;
     getCaptcha: Effect;
     logout: Effect;
   };
   reducers: {
-    changeLoginStatus: Reducer<StateType>;
-    changeResetPasswordModalStatus: Reducer<StateType>;
+    changeLoginStatus: Reducer<LoginModalState>;
+    changeResetPasswordModalStatus: Reducer<LoginModalState>;
   };
 }
 
@@ -54,8 +54,8 @@ const Model: LoginModelType = {
             payload: result.shouldResetPassword,
           });
           return;
-        } 
-   
+        }
+
         // token重置时间
         let tokenExpireDate = payload.rememberClient ? (new Date(new Date().getTime() + 1000 * result.expireInSeconds)) : undefined;
         // set Token
@@ -79,7 +79,7 @@ const Model: LoginModelType = {
         }
         yield put(routerRedux.replace(redirect || '/'));
       }
-      
+
     },
 
     *getCaptcha({ payload }, { call }) {

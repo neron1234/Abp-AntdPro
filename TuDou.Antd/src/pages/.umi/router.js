@@ -88,13 +88,13 @@ const routes = [
           },
           {
             path: '/admin',
-            name: 'admin',
-            icon: 'smile',
+            name: '管理',
+            icon: 'setting',
             routes: [
               {
                 path: '/admin/organizationUnits',
-                name: 'organizationUnits',
-                icon: 'smile',
+                name: '组织机构',
+                icon: 'team',
                 component: __IS_BROWSER
                   ? _dvaDynamic({
                       component: () =>
@@ -106,23 +106,9 @@ const routes = [
                 exact: true,
               },
               {
-                path: '/admin/users',
-                name: 'users',
-                icon: 'smile',
-                component: __IS_BROWSER
-                  ? _dvaDynamic({
-                      component: () =>
-                        import(/* webpackChunkName: "layouts__BasicLayout" */ '../admin/users'),
-                      LoadingComponent: require('D:/个人程序文件/个人项目/AbpZero-AntdPro/TuDou.Antd/src/components/PageLoading/index')
-                        .default,
-                    })
-                  : require('../admin/users').default,
-                exact: true,
-              },
-              {
                 path: '/admin/roles',
-                name: 'roles',
-                icon: 'smile',
+                name: '角色',
+                icon: 'safety',
                 component: __IS_BROWSER
                   ? _dvaDynamic({
                       component: () =>
@@ -134,9 +120,23 @@ const routes = [
                 exact: true,
               },
               {
+                path: '/admin/users',
+                name: '用户',
+                icon: 'user',
+                component: __IS_BROWSER
+                  ? _dvaDynamic({
+                      component: () =>
+                        import(/* webpackChunkName: "layouts__BasicLayout" */ '../admin/users'),
+                      LoadingComponent: require('D:/个人程序文件/个人项目/AbpZero-AntdPro/TuDou.Antd/src/components/PageLoading/index')
+                        .default,
+                    })
+                  : require('../admin/users').default,
+                exact: true,
+              },
+              {
                 path: '/admin/languages',
-                name: 'languages',
-                icon: 'smile',
+                name: '语言列表',
+                icon: 'unordered-list',
                 component: __IS_BROWSER
                   ? _dvaDynamic({
                       component: () =>
@@ -149,8 +149,8 @@ const routes = [
               },
               {
                 path: '/admin/auditLogs',
-                name: 'auditLogs',
-                icon: 'smile',
+                name: '审计日志',
+                icon: 'schedule',
                 component: __IS_BROWSER
                   ? _dvaDynamic({
                       component: () =>

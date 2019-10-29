@@ -5,7 +5,9 @@ import { GetOrganizationUnitUsersInput } from "./dtos/getOrganizationUnitUsersIn
 import { GetOrganizationUnitRolesInput } from "./dtos/getOrganizationUnitRolesInput";
 import { EntityDto } from "@/shared/dtos/entityDto";
 import { CreateOrganizationUnitInput } from "./dtos/createOrganizationUnitInput";
-import { UpdateOrganizationUnitInput } from "./dtos/updateOrganizationUnitInput";
+import { RolesToOrganizationUnitInput } from "./dtos/rolesToOrganizationUnitInput";
+import { UsersToOrganizationUnitInput } from "./dtos/usersToOrganizationUnitInput";
+import { UserToOrganizationUnitInput } from "./dtos/userToOrganizationUnitInput";
 
 class OrganizationUnitsService {
   async getOrganizationUnits() {
@@ -55,6 +57,29 @@ class OrganizationUnitsService {
       params: input
     });
   };
-
+  async addUsersToOrganizationUnit(input: UsersToOrganizationUnitInput) {
+    return request('api/services/app/OrganizationUnit/AddUsersToOrganizationUnit', {
+      method: "POST",
+      data: input
+    });
+  };
+  async addRolesToOrganizationUnit(input: UsersToOrganizationUnitInput) {
+    return request('api/services/app/OrganizationUnit/AddRolesToOrganizationUnit', {
+      method: "POST",
+      data: input
+    });
+  };
+  async removeUserFromOrganizationUnit(input: UserToOrganizationUnitInput) {
+    return request('api/services/app/OrganizationUnit/RemoveUserFromOrganizationUnit', {
+      method: "DELETE",
+      params: input
+    });
+  };
+  async removeRoleFromOrganizationUnit(input: RolesToOrganizationUnitInput) {
+    return request('api/services/app/OrganizationUnit/RemoveRoleFromOrganizationUnit', {
+      method: "DELETE",
+      params: input
+    });
+  };
 }
 export default new OrganizationUnitsService();

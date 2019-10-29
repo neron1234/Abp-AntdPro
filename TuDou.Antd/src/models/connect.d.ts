@@ -4,12 +4,13 @@ import { RouterTypes } from 'umi';
 import { GlobalModelState } from './global';
 import { DefaultSettings as SettingModelState } from '../../config/defaultSettings';
 import { UserModelState } from './user';
-import { LoginModelType } from './login';
+import { LoginModelType, StateType } from './login';
 import { UsersModelType } from './admin/users';
-import { RolesModelType } from './admin/roles';
-import { OrganizationUnitsModelType } from './admin/organizationUnits';
-import { LanguagesModelType } from './admin/languages';
-import { AuditLogsModelType } from './admin/auditLogs';
+import { RolesModelType, RolesModelState } from './admin/roles';
+import { OrganizationUnitsModelType, OrganizationUnitsStateType } from './admin/organizationUnits';
+import { LanguagesModelType, LanguagesStateType } from './admin/languages';
+import { AuditLogsModelType, AuditLogsStateType } from './admin/auditLogs';
+import { PermissionModelType, PermissionModelState } from './permission';
 export { GlobalModelState, SettingModelState, UserModelState };
 
 export interface Loading {
@@ -26,6 +27,7 @@ export interface Loading {
     organizationUnits?:boolean;
     languages?:boolean;
     auditLogs?:boolean;
+    permissions?:boolean;
   };
 }
 
@@ -34,12 +36,13 @@ export interface ConnectState {
   loading: Loading;
   settings: SettingModelState;
   user: UserModelState;
-  users:UsersModelType;
-  roles:RolesModelType;
-  login: LoginModelType;
-  organizationUnits: OrganizationUnitsModelType;
-  languages: LanguagesModelType;
-  auditLogs:AuditLogsModelType;
+  users:UserModelState;
+  roles:RolesModelState;
+  login: StateType;
+  organizationUnits: OrganizationUnitsStateType;
+  languages: LanguagesStateType;
+  auditLogs:AuditLogsStateType;
+  permissions:PermissionModelState
 }
 
 export interface Route extends MenuDataItem {

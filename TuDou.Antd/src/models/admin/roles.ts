@@ -4,17 +4,17 @@ import RolesService from '@/services/roles/roles'
 import { RoleListDto } from "@/services/roles/dtos/roleListDto";
 import { ListResultDto } from "@/shared/dtos/listResultDto";
 
-export interface RolesStateType {
+export interface RolesModelState {
     roles?: ListResultDto<RoleListDto>
 }
 export interface RolesModelType {
     namespace: string;
-    state: RolesStateType;
+    state: RolesModelState;
     effects: {
         getRoles: Effect;
     };
     reducers: {
-        saveRoles: Reducer<RolesStateType>;
+        saveRoles: Reducer<RolesModelState>;
     };
 }
 const Model: RolesModelType = {

@@ -15,6 +15,7 @@ import { GetOrganizationUnitUsersInput } from "@/services/organizationunits/dtos
 import { AntTreeNodeMouseEvent } from "antd/lib/tree";
 import 'react-contexify/dist/ReactContexify.min.css';
 import AddMember from "./components/addMember";
+import AddRole from "./components/addRole";
 const { TabPane } = Tabs;
 const { DirectoryTree } = Tree;
 const { confirm } = Modal;
@@ -26,6 +27,7 @@ export interface OrganizationUnitsProps {
 }
 export interface OrganizationUnitsStates {
   addMemberModalVisible: boolean;
+  addRoleModalVisible: boolean;
   creatrOrUpdateModalVisible: boolean;
   getOrganizationRoleInput: GetOrganizationUnitRolesInput;
   getOrganizationUserInput: GetOrganizationUnitUsersInput;
@@ -38,11 +40,13 @@ class OrganizationUnits extends AppComponentBase<OrganizationUnitsProps, Organiz
   // ref
   createTreeNodeModalRef: any = React.createRef();
   addMemberModalRef: RefObject<AddMember> = React.createRef<AddMember>();
+  addRoleRef: RefObject<AddRole> = React.createRef<AddRole>();
   // modal类型
   modalType?: ModalType;
   organizationUnitSelectedId: number | null = null;
   state = {
-    addMemberModalVisible:false,
+    addMemberModalVisible: false,
+    addRoleModalVisible: false,
     creatrOrUpdateModalVisible: false,
     getOrganizationUserInput: {
       maxResultCount: this.maxResultCount,
@@ -105,12 +109,12 @@ class OrganizationUnits extends AppComponentBase<OrganizationUnitsProps, Organiz
     });
   }
   // 创建根节点
-  creatrRootNodeHandler=()=>{
+  creatrRootNodeHandler = () => {
     this.organizationUnitSelectedId = null;
     this.openCreateOrUpdateModal("create");
   }
   openCreateOrUpdateModal(type: ModalType) {
-    this.modalType=type;
+    this.modalType = type;
     if (type === "update") {
       var { setFieldsValue } = this.createTreeNodeModalRef.current;
       const selectNode = this.props.organizationUnits.organizationUnits!.items.filter(t => t.id == this.organizationUnitSelectedId);
@@ -143,19 +147,64 @@ class OrganizationUnits extends AppComponentBase<OrganizationUnitsProps, Organiz
       },
     });
   }
-  // 新增组织机构modal打开或关闭
-  addMermberModal=()=>{
+  addRoleModal = () => {
     this.setState({
-      addMemberModalVisible:!this.state.addMemberModalVisible
+      addRoleModalVisible: !this.state.addRoleModalVisible
     })
   }
   // 打开AddMerBermodal
-  addMermberModalOpen=()=>{
-    console.log(this.addMemberModalRef.current);
-    this.addMemberModalRef.current!.findUsers();
-     this.addMermberModal();
+  addRoleModalOpen = () => {
+    this.addRoleRef.current!.findRoles();
+    this.addRoleModal();
   }
-  addMermberModalOkHandler=()=>{
+  // 新增组织机构modal打开或关闭
+  addMermberModal = () => {
+    this.setState({
+      addMemberModalVisible: !this.state.addMemberModalVisible
+    })
+  }
+  // 打开AddMerBermodal
+  addMermberModalOpen = () => {
+    this.addMemberModalRef.current!.findUsers();
+    this.addMermberModal();
+  }
+  // 添加角色至组织机构
+  addRoleModalOkHandler = async () => {
+    const { dispatch, organizationUnits } = this.props;
+    await dispatch({
+      type: 'organizationUnits/addRolesToOrganizationUnit',
+      payload: {
+        roleIds: organizationUnits.selectFindUsers,
+        organizationUnitId: this.organizationUnitSelectedId
+      }
+    });
+    await dispatch({
+      type: 'organizationUnits/getOrganizationUnitRoles',
+      payload: {
+        ...this.state.getOrganizationRoleInput,
+        id: this.organizationUnitSelectedId
+      }
+    })
+    this.addRoleModal();
+  }
+  // 添加成员至组织机构
+  addMermberModalOkHandler = async () => {
+    const { dispatch, organizationUnits } = this.props;
+    await dispatch({
+      type: 'organizationUnits/addUsersToOrganizationUnit',
+      payload: {
+        userIds: organizationUnits.selectFindUsers,
+        organizationUnitId: this.organizationUnitSelectedId
+      }
+    });
+    await dispatch({
+      type: 'organizationUnits/getOrganizationUnitUsers',
+      payload: {
+        ...this.state.getOrganizationUserInput,
+        id: this.organizationUnitSelectedId
+      }
+    })
+    this.addMermberModal();
 
   }
   // 树右键菜单
@@ -165,6 +214,54 @@ class OrganizationUnits extends AppComponentBase<OrganizationUnitsProps, Organiz
       id: "rightMenu",
       event: e.event,
     });
+  }
+   // 移除组织机构角色
+   removeRoleFromOrganizationUnit(roleId: number) {
+    const self = this;
+    confirm({
+      title: '确认操作',
+      content: '确认要移除此项吗?',
+      okText: '确认',
+      cancelText: '取消',
+      onOk() {
+        const { dispatch } = self.props;
+        dispatch({
+          type: 'organizationUnits/removeRoleFromOrganizationUnit',
+          payload: {
+            roleId: roleId,
+            organizationUnitId: self.organizationUnitSelectedId
+          }
+        });
+      },
+      onCancel() {
+
+      },
+    });
+
+  }
+  // 移除组织机构成员
+  removeUserFromOrganizationUnit(userid: number) {
+    const self = this;
+    confirm({
+      title: '确认操作',
+      content: '确认要移除此项吗?',
+      okText: '确认',
+      cancelText: '取消',
+      onOk() {
+        const { dispatch } = self.props;
+        dispatch({
+          type: 'organizationUnits/removeUserFromOrganizationUnit',
+          payload: {
+            userId: userid,
+            organizationUnitId: self.organizationUnitSelectedId
+          }
+        });
+      },
+      onCancel() {
+
+      },
+    });
+
   }
   // 标签页选择
   getTableData = () => {
@@ -202,7 +299,7 @@ class OrganizationUnits extends AppComponentBase<OrganizationUnitsProps, Organiz
       </Menu>
     );
     const { organizationUnits, organizationUnitUsers, organizationUnitRoles } = this.props.organizationUnits;
-    const { addMemberModalVisible,creatrOrUpdateModalVisible } = this.state;
+    const { addMemberModalVisible, addRoleModalVisible, creatrOrUpdateModalVisible } = this.state;
     let treeData = createTree(organizationUnits == undefined ? [] : organizationUnits.items,
       'parentId',
       'id',
@@ -231,7 +328,7 @@ class OrganizationUnits extends AppComponentBase<OrganizationUnitsProps, Organiz
         dataIndex: 'action',
         key: 'action',
         render: (text: any, record: any, index: number) => {
-          return <Button icon="close-circle" type="primary">删除</Button>
+          return <Button onClick={() => { this.removeUserFromOrganizationUnit(record.id) }} icon="close-circle" type="primary">删除</Button>
         }
       },
       {
@@ -251,7 +348,7 @@ class OrganizationUnits extends AppComponentBase<OrganizationUnitsProps, Organiz
         dataIndex: 'action',
         key: 'action',
         render: (text: any, record: any, index: number) => {
-          return <Button icon="close-circle" type="primary">删除</Button>
+          return <Button onClick={() => { this.removeRoleFromOrganizationUnit(record.id) }} icon="close-circle" type="primary">删除</Button>
         }
       },
       {
@@ -276,6 +373,7 @@ class OrganizationUnits extends AppComponentBase<OrganizationUnitsProps, Organiz
                 onSelect={this.selectTree}
                 showIcon
                 treeData={treeData}
+                draggable
                 onRightClick={this.treeRightClickHandler}
               >
               </DirectoryTree>
@@ -302,9 +400,9 @@ class OrganizationUnits extends AppComponentBase<OrganizationUnitsProps, Organiz
                 </TabPane>
                 <TabPane tab="角色" key="role">
                   {
-                    this.organizationUnitSelectedId == undefined ? (<p>选择一个组织成员</p>) :
+                    this.organizationUnitSelectedId == undefined ? (<p>选择一个角色</p>) :
                       (<div>   <Col style={{ textAlign: 'right' }}>
-                        <Button icon="plus" type="primary">添加角色</Button>
+                        <Button onClick={this.addRoleModalOpen} icon="plus" type="primary">添加角色</Button>
                       </Col>
                         <Table
                           dataSource={organizationUnitRoles == undefined ? [] : organizationUnitRoles.items}
@@ -323,17 +421,28 @@ class OrganizationUnits extends AppComponentBase<OrganizationUnitsProps, Organiz
                 visible={creatrOrUpdateModalVisible}
                 onCancel={this.createOrUpdateModal}
                 onOk={this.openCreateOrUpdateModalOk} />
-            <AddMember
-            organizationUnitId={this.organizationUnitSelectedId}
-            ref={this.addMemberModalRef}
-            dispatch={this.props.dispatch}
-            organizationUnits={this.props.organizationUnits}
-            visible={addMemberModalVisible}
-            onCancel={()=>{
-              this.addMermberModal()
-            }}
+              <AddMember
+                organizationUnitId={this.organizationUnitSelectedId}
+                ref={this.addMemberModalRef}
+                dispatch={this.props.dispatch}
+                organizationUnits={this.props.organizationUnits}
+                visible={addMemberModalVisible}
+                onCancel={() => {
+                  this.addMermberModal()
+                }}
 
-            onOk={this.addMermberModalOkHandler}/>
+                onOk={this.addMermberModalOkHandler} />
+              <AddRole
+                organizationUnitId={this.organizationUnitSelectedId}
+                ref={this.addRoleRef}
+                dispatch={this.props.dispatch}
+                organizationUnits={this.props.organizationUnits}
+                visible={addRoleModalVisible}
+                onCancel={() => {
+                  this.addRoleModal()
+                }}
+
+                onOk={this.addRoleModalOkHandler} />
             </Card>
           </Col>
         </Row>

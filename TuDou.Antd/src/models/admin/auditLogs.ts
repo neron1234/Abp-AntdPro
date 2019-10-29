@@ -4,17 +4,17 @@ import { Reducer } from "redux";
 import AuditLogsService from '@/services/auditLog/auditLog'
 import { PagedResultDto } from "@/shared/dtos/pagedResultDto";
 import { AuditLogListDto } from "@/services/auditLog/dtos/auditLogListDto";
-export interface AuditLogsStateType {
+export interface AuditLogsModelState {
    auditLogs?:PagedResultDto<AuditLogListDto>
 }
 export interface AuditLogsModelType {
     namespace: string;
-    state: AuditLogsStateType;
+    state: AuditLogsModelState;
     effects: {
         getAuditLogs:Effect
     };
     reducers: {
-         saveAuditLogs:Reducer<AuditLogsStateType>
+         saveAuditLogs:Reducer<AuditLogsModelState>
     };
 }
 const Model: AuditLogsModelType = {

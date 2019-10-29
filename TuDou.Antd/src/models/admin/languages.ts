@@ -2,17 +2,17 @@ import { GetLanguagesOutput } from "@/services/languages/dtos/getLanguagesOutput
 import { Effect } from "dva";
 import { Reducer } from "redux";
 import LanguagesService from '@/services/languages/languages'
-export interface LanguagesStateType {
+export interface LanguagesModelState {
    languages?:GetLanguagesOutput
 }
 export interface LanguagesModelType {
     namespace: string;
-    state: LanguagesStateType;
+    state: LanguagesModelState;
     effects: {
         getLanguages:Effect
     };
     reducers: {
-         saveLanguages:Reducer<LanguagesStateType>
+         saveLanguages:Reducer<LanguagesModelState>
     };
 }
 const Model: LanguagesModelType = {

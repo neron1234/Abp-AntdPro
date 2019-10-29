@@ -1,9 +1,11 @@
 import AppComponentBase from "@/components/AppComponentBase";
 import React from 'react';
 import { Modal, Table } from "antd";
+import  * as _ from 'lodash';
 import { AnyAction, Dispatch } from "redux";
 import { OrganizationUnitsStateType } from "@/models/admin/organizationUnits";
 import { FindOrganizationUnitUsersInput } from "@/services/organizationunits/dtos/findOrganizationUnitUsersInput";
+import { PaginationConfig } from "antd/lib/table";
 interface IAddMemberProps {
   dispatch: Dispatch<AnyAction>;
   organizationUnits: OrganizationUnitsStateType;
@@ -26,18 +28,35 @@ class AddMember extends AppComponentBase<IAddMemberProps, IAddMemberStates>{
       organizationUnitId: null
     }
   }
-  findUsers = () => {
+  findUsers =async () => {
     const { dispatch } = this.props;
-    dispatch({
+    await dispatch({
       type: "organizationUnits/findUsers",
       payload: {...this.state.findUsersInput,organizationUnitId:this.props.organizationUnitId}
     })
   }
-  onSelectChange = (selectedMember:any[]) => {
-    this.setState({ selectedMember });
+  // 复选框选中
+  onSelectChange = (selectedMember:any[],selectedRows:any[]) => {
+    const {dispatch} = this.props;
+    const selectValues=_.map(selectedRows,item=>{
+      return  Number(item.value);
+    });
+    dispatch({
+      type: "organizationUnits/selectFindUsers",
+      payload: selectValues
+    })
   };
+  handleTableChange=(pagination: PaginationConfig)=>{
+     this.setState({
+      findUsersInput:{
+        ...this.state.findUsersInput,
+        skipCount:pagination.current!,
+        maxResultCount:pagination.pageSize!
+      }
+     })
+  }
   render() {
-    const { visible, onCancel,organizationUnits } = this.props;
+    const { visible,onOk, onCancel,organizationUnits } = this.props;
     const { selectedMember } = this.state;
     const columns = [
       {
@@ -50,17 +69,22 @@ class AddMember extends AppComponentBase<IAddMemberProps, IAddMemberStates>{
       selectedMember,
       onChange: this.onSelectChange,
     };
+    function showPageTotal(total:number) {
+      return `共 ${total} 项`;
+    }
     return (
       <Modal
-
+        onOk={onOk}
         visible={visible}
-        title="新增组织成员"
+        title="添加组织成员"
         onCancel={onCancel}>
         <Table
           loading={organizationUnits.findUsers==undefined}
           dataSource={organizationUnits.findUsers==undefined?[]:organizationUnits.findUsers!.items}
           columns={columns}
-          rowSelection={rowSelection} >
+          rowSelection={rowSelection}
+          onChange={this.handleTableChange}
+          pagination={{ showTotal:showPageTotal,pageSize:this.state.findUsersInput.maxResultCount,current:this.state.findUsersInput.skipCount,total:organizationUnits.findUsers==undefined?0:organizationUnits.findUsers!.totalCount}} >
 
         </Table>
       </Modal>

@@ -8,17 +8,25 @@ import { OrganizationUnitUserListDto } from "@/services/organizationunits/dtos/o
 import { OrganizationUnitRoleListDto } from "@/services/organizationunits/dtos/organizationUnitRoleListDto";
 import NameValueDto from "@/shared/dtos/nameValueDto";
 
-export interface OrganizationUnitsStateType {
+export interface OrganizationUnitsModalState {
   organizationUnits?: ListResultDto<OrganizationUnitDto>;
   organizationUnitUsers?: PagedResultDto<OrganizationUnitUserListDto>;
   organizationUnitRoles?: PagedResultDto<OrganizationUnitRoleListDto>;
   findUsers?:PagedResultDto<NameValueDto>;
   findRoles?:PagedResultDto<NameValueDto>;
+  selectFindUsers?:number[];
+  selectFindRoles?:number[]
 }
 export interface OrganizationUnitsModelType {
   namespace: string;
-  state: OrganizationUnitsStateType;
+  state: OrganizationUnitsModalState;
   effects: {
+    removeRoleFromOrganizationUnit: Effect;
+    removeUserFromOrganizationUnit: Effect;
+    addRolesToOrganizationUnit: Effect;
+    addUsersToOrganizationUnit: Effect;
+    selectFindUsers: Effect;
+    selectFindRoles: Effect;
     findUsers: Effect;
     findRoles:Effect;
     getOrganizationUnits: Effect;
@@ -29,14 +37,18 @@ export interface OrganizationUnitsModelType {
     updateOrganizationUnit:Effect;
   };
   reducers: {
-    saveCreateOrganizationUnit: Reducer<OrganizationUnitsStateType>;
-    saveDeleteOrganizationUnit: Reducer<OrganizationUnitsStateType>;
-    saveOrganizationUnits: Reducer<OrganizationUnitsStateType>;
-    saveOrganizationUnitUsers: Reducer<OrganizationUnitsStateType>;
-    saveOrganizationUnitRoles: Reducer<OrganizationUnitsStateType>;
-    saveUpdateOrganizationUnit: Reducer<OrganizationUnitsStateType>;
-    saveFindUsers: Reducer<OrganizationUnitsStateType>;
-    saveFindRoles: Reducer<OrganizationUnitsStateType>;
+    saveRemoveRoleFromOrganizationUnit: Reducer<OrganizationUnitsModalState>;
+    saveSelectFindRoles: Reducer<OrganizationUnitsModalState>;
+    saveRemoveUserFromOrganizationUnit: Reducer<OrganizationUnitsModalState>;
+    saveSelectFindUsers: Reducer<OrganizationUnitsModalState>;
+    saveCreateOrganizationUnit: Reducer<OrganizationUnitsModalState>;
+    saveDeleteOrganizationUnit: Reducer<OrganizationUnitsModalState>;
+    saveOrganizationUnits: Reducer<OrganizationUnitsModalState>;
+    saveOrganizationUnitUsers: Reducer<OrganizationUnitsModalState>;
+    saveOrganizationUnitRoles: Reducer<OrganizationUnitsModalState>;
+    saveUpdateOrganizationUnit: Reducer<OrganizationUnitsModalState>;
+    saveFindUsers: Reducer<OrganizationUnitsModalState>;
+    saveFindRoles: Reducer<OrganizationUnitsModalState>;
   };
 }
 const Model: OrganizationUnitsModelType = {
@@ -45,8 +57,44 @@ const Model: OrganizationUnitsModelType = {
     organizationUnits: undefined,
     organizationUnitUsers: undefined,
     organizationUnitRoles: undefined,
+    findUsers:undefined,
+    findRoles:undefined,
+    selectFindUsers:undefined,
   },
   effects: {
+    *removeRoleFromOrganizationUnit({ payload }, { call, put }){
+      yield call(OrganizationUnitsService.removeRoleFromOrganizationUnit, payload)
+      yield put({
+        type: 'saveRemoveRoleFromOrganizationUnit',
+        payload: payload
+      })
+    },
+    *removeUserFromOrganizationUnit({ payload }, { call, put }){
+      yield call(OrganizationUnitsService.removeUserFromOrganizationUnit, payload)
+      yield put({
+        type: 'saveRemoveUserFromOrganizationUnit',
+        payload: payload
+      })
+    },
+    *addRolesToOrganizationUnit({ payload }, { call, put }){
+      yield call(OrganizationUnitsService.addRolesToOrganizationUnit, payload)
+    },
+    *addUsersToOrganizationUnit({ payload }, { call, put }){
+        yield call(OrganizationUnitsService.addUsersToOrganizationUnit, payload)
+
+    },
+    *selectFindRoles({ payload }, { call, put }){
+      yield put({
+        type: 'saveSelectFindRoles',
+        payload: payload
+      })
+    },
+    *selectFindUsers({ payload }, { call, put }){
+      yield put({
+        type: 'saveSelectFindUsers',
+        payload: payload
+      })
+    },
     *findUsers({ payload }, { call, put }) {
       const response = yield call(OrganizationUnitsService.findUsers, payload)
       yield put({
@@ -111,6 +159,38 @@ const Model: OrganizationUnitsModelType = {
     }
   },
   reducers: {
+    saveRemoveUserFromOrganizationUnit(state, { payload }) {
+      return ({
+        ...state,
+        organizationUnitUsers:{
+          items:state!.organizationUnitUsers!.items.filter(todo => todo.id !== payload.userId),
+          totalCount:state!.organizationUnitUsers!.totalCount-1
+        }
+
+      })
+    },
+    saveRemoveRoleFromOrganizationUnit(state, { payload }) {
+      return ({
+        ...state,
+        organizationUnitRoles:{
+          items:state!.organizationUnitRoles!.items.filter(todo => todo.id !== payload.roleId),
+          totalCount:state!.organizationUnitRoles!.totalCount-1
+        }
+
+      })
+    },
+    saveSelectFindUsers(state, { payload }) {
+      return ({
+        ...state,
+        selectFindUsers:payload
+      })
+    },
+    saveSelectFindRoles(state, { payload }) {
+      return ({
+        ...state,
+        selectFindUsers:payload
+      })
+    },
     saveFindUsers(state, { payload }) {
       return ({
         ...state,
