@@ -1,14 +1,17 @@
 import AppComponentBase from "@/components/AppComponentBase";
 import React from 'react';
-import { Card, Table, Button, Tag, Dropdown, Menu } from "antd";
+import { Card, Table, Button, Tag, Dropdown, Menu, Icon } from "antd";
 import { PageHeaderWrapper } from "@ant-design/pro-layout";
 import { connect } from "dva";
 import { ConnectState } from "@/models/connect";
 import { AnyAction, Dispatch } from "redux";
-import { LanguagesStateType } from "@/models/admin/languages";
+import {LanguagesModelState} from "@/models/admin/languages";
+import Redirect from 'umi/redirect';
+import { Link } from "umi";
+
 export interface LanguagesProps {
   dispatch: Dispatch<AnyAction>;
-  languages: LanguagesStateType;
+  languages: LanguagesModelState;
   loading:boolean;
 }
 export interface LanguagesStates {
@@ -36,14 +39,12 @@ class Languages extends AppComponentBase<LanguagesProps, LanguagesStates> {
     const menu = (
       <Menu>
         <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
-            修改
-          </a>
+          <Link to="/admin/languageTexts/en">修改</Link>
         </Menu.Item>
         <Menu.Item>
           <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
             删除
-      </a>
+          </a>
         </Menu.Item>
       </Menu>
     );
@@ -55,7 +56,7 @@ class Languages extends AppComponentBase<LanguagesProps, LanguagesStates> {
         render: (text: any, record: any, index: number) => {
           return <div>
             <Dropdown overlay={menu} trigger={['click']} placement="bottomLeft">
-              <Button icon="setting" type="primary">操作</Button>
+              <Button icon="setting" type="primary">操作<Icon type="down" /></Button>
             </Dropdown>
           </div>
         }

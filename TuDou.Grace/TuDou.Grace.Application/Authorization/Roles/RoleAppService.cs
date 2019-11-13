@@ -120,7 +120,7 @@ namespace TuDou.Grace.Authorization.Roles
         {
             var role = new Role(AbpSession.TenantId, input.Role.DisplayName) { IsDefault = input.Role.IsDefault };
             CheckErrors(await _roleManager.CreateAsync(role));
-            await CurrentUnitOfWork.SaveChangesAsync(); //It's done to get Id of the role.
+            await CurrentUnitOfWork.SaveChangesAsync(); //它被用来获取角色的Id。
             await UpdateGrantedPermissionsAsync(role, input.GrantedPermissionNames);
         }
 

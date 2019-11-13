@@ -27,6 +27,7 @@ app.model({ namespace: 'roles', ...(require('D:/个人程序文件/个人项目/
 app.model({ namespace: 'users', ...(require('D:/个人程序文件/个人项目/AbpZero-AntdPro/TuDou.Antd/src/models/admin/users.ts').default) });
 app.model({ namespace: 'global', ...(require('D:/个人程序文件/个人项目/AbpZero-AntdPro/TuDou.Antd/src/models/global.ts').default) });
 app.model({ namespace: 'login', ...(require('D:/个人程序文件/个人项目/AbpZero-AntdPro/TuDou.Antd/src/models/login.ts').default) });
+app.model({ namespace: 'organizationUnitTree', ...(require('D:/个人程序文件/个人项目/AbpZero-AntdPro/TuDou.Antd/src/models/organizationUnitTree.ts').default) });
 app.model({ namespace: 'permission', ...(require('D:/个人程序文件/个人项目/AbpZero-AntdPro/TuDou.Antd/src/models/permission.ts').default) });
 app.model({ namespace: 'setting', ...(require('D:/个人程序文件/个人项目/AbpZero-AntdPro/TuDou.Antd/src/models/setting.ts').default) });
 app.model({ namespace: 'user', ...(require('D:/个人程序文件/个人项目/AbpZero-AntdPro/TuDou.Antd/src/models/user.ts').default) });

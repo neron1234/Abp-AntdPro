@@ -148,6 +148,21 @@ const routes = [
                 exact: true,
               },
               {
+                path: '/admin/languageTexts/:name',
+                name: '语言列表',
+                icon: 'unordered-list',
+                component: __IS_BROWSER
+                  ? _dvaDynamic({
+                      component: () =>
+                        import(/* webpackChunkName: "layouts__BasicLayout" */ '../admin/languages/languageText'),
+                      LoadingComponent: require('D:/个人程序文件/个人项目/AbpZero-AntdPro/TuDou.Antd/src/components/PageLoading/index')
+                        .default,
+                    })
+                  : require('../admin/languages/languageText').default,
+                hideInMenu: true,
+                exact: true,
+              },
+              {
                 path: '/admin/auditLogs',
                 name: '审计日志',
                 icon: 'schedule',

@@ -148,7 +148,7 @@ namespace TuDou.Grace.Authorization.Users
 
             if (!input.Id.HasValue)
             {
-                //Creating a new user
+                // 创建新用户
                 output.User = new UserEditDto
                 {
                     IsActive = true,
@@ -168,7 +168,7 @@ namespace TuDou.Grace.Authorization.Users
             }
             else
             {
-                //Editing an existing user
+                //编辑现有用户
                 var user = await UserManager.GetUserByIdAsync(input.Id.Value);
 
                 output.User = ObjectMapper.Map<UserEditDto>(user);

@@ -139,6 +139,13 @@ export default {
                   component: './admin/languages',
                 },
                 {
+                  path: '/admin/languageTexts/:name',
+                  name: '语言列表',
+                  icon: 'unordered-list',
+                  component: './admin/languages/languageText',
+                  hideInMenu:true,
+                },
+                {
                   path: '/admin/auditLogs',
                   name: '审计日志',
                   icon: 'schedule',

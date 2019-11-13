@@ -69,7 +69,7 @@ class AuditLogs extends AppComponentBase<AuditLogsProps, AuditLogsStates> {
         render: (text: any, record: any, index: number) => {
           return <div>
             <Dropdown overlay={menu} trigger={['click']} placement="bottomLeft">
-              <Button icon="setting" type="primary">操作</Button>
+              <Button icon="setting" type="primary">操作<Icon type="down" /></Button>
             </Dropdown>
           </div>
         }
@@ -112,7 +112,7 @@ class AuditLogs extends AppComponentBase<AuditLogsProps, AuditLogsStates> {
         dataIndex: 'clientName',
         key: 'clientName',
       }
-    
+
     ];
     return (
       <PageHeaderWrapper >

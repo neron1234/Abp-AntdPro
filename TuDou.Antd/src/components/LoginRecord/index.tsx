@@ -15,10 +15,10 @@ class LoginRecord extends AppComponentBase<LoginRecordProps> {
         const {visible,onCancel,userLoginRecords} = this.props;
         return (
             <div>
-                <Modal width={'50%'} closable={false} footer={null} onCancel={onCancel} visible={visible}>
+                <Modal width={'50%'}  footer={null} onCancel={onCancel} visible={visible}>
                   {
                     userLoginRecords==undefined?null:userLoginRecords.items.map(item=>{
-                       return <Card style={{ width: '100%',marginBottom:10 }}>
+                       return <Card style={{border: '1px solid #0abb87',color:'#0abb87',width: '100%',fontSize:14,marginBottom:10 }}>
                            <p>{item.clientIpAddress}</p>
                            <p>{item.clientName}</p>
                            <p>{item.creationTime}</p>
@@ -27,7 +27,7 @@ class LoginRecord extends AppComponentBase<LoginRecordProps> {
                         </Card>
                     })
                   }
-                 
+
                 </Modal>
             </div>
         )

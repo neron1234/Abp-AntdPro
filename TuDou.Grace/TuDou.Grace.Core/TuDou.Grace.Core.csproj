@@ -21,7 +21,9 @@
     <PackageReference Include="TimeZoneConverter" Version="3.2.0" />
     <PackageReference Include="Twilio" Version="5.33.0" />
   </ItemGroup>
-
+  <ItemGroup>
+    <EmbeddedResource Include="Localization\Grace\*.xml;Net\Emailing\EmailTemplates\default.html" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TuDou.Grace.Core.Shared\TuDou.Grace.Core.Shared.csproj" />
   </ItemGroup>

@@ -1,8 +1,5 @@
-export interface FlatPermissionWithLevelDto{
-  parentName:string;
-  name:string;
-  displayName:string;
-  description:string;
-  isGrantedByDefault:boolean;
+import { FlatPermissionDto } from "@/services/roles/dtos/flatPermissionDto";
+
+export interface FlatPermissionWithLevelDto extends FlatPermissionDto{
   level:number;
 }

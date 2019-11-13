@@ -8,7 +8,7 @@ import { OrganizationUnitUserListDto } from "@/services/organizationunits/dtos/o
 import { OrganizationUnitRoleListDto } from "@/services/organizationunits/dtos/organizationUnitRoleListDto";
 import NameValueDto from "@/shared/dtos/nameValueDto";
 
-export interface OrganizationUnitsModalState {
+export interface OrganizationUnitsModelState {
   organizationUnits?: ListResultDto<OrganizationUnitDto>;
   organizationUnitUsers?: PagedResultDto<OrganizationUnitUserListDto>;
   organizationUnitRoles?: PagedResultDto<OrganizationUnitRoleListDto>;
@@ -19,7 +19,7 @@ export interface OrganizationUnitsModalState {
 }
 export interface OrganizationUnitsModelType {
   namespace: string;
-  state: OrganizationUnitsModalState;
+  state: OrganizationUnitsModelState;
   effects: {
     removeRoleFromOrganizationUnit: Effect;
     removeUserFromOrganizationUnit: Effect;
@@ -37,18 +37,18 @@ export interface OrganizationUnitsModelType {
     updateOrganizationUnit:Effect;
   };
   reducers: {
-    saveRemoveRoleFromOrganizationUnit: Reducer<OrganizationUnitsModalState>;
-    saveSelectFindRoles: Reducer<OrganizationUnitsModalState>;
-    saveRemoveUserFromOrganizationUnit: Reducer<OrganizationUnitsModalState>;
-    saveSelectFindUsers: Reducer<OrganizationUnitsModalState>;
-    saveCreateOrganizationUnit: Reducer<OrganizationUnitsModalState>;
-    saveDeleteOrganizationUnit: Reducer<OrganizationUnitsModalState>;
-    saveOrganizationUnits: Reducer<OrganizationUnitsModalState>;
-    saveOrganizationUnitUsers: Reducer<OrganizationUnitsModalState>;
-    saveOrganizationUnitRoles: Reducer<OrganizationUnitsModalState>;
-    saveUpdateOrganizationUnit: Reducer<OrganizationUnitsModalState>;
-    saveFindUsers: Reducer<OrganizationUnitsModalState>;
-    saveFindRoles: Reducer<OrganizationUnitsModalState>;
+    saveRemoveRoleFromOrganizationUnit: Reducer<OrganizationUnitsModelState>;
+    saveSelectFindRoles: Reducer<OrganizationUnitsModelState>;
+    saveRemoveUserFromOrganizationUnit: Reducer<OrganizationUnitsModelState>;
+    saveSelectFindUsers: Reducer<OrganizationUnitsModelState>;
+    saveCreateOrganizationUnit: Reducer<OrganizationUnitsModelState>;
+    saveDeleteOrganizationUnit: Reducer<OrganizationUnitsModelState>;
+    saveOrganizationUnits: Reducer<OrganizationUnitsModelState>;
+    saveOrganizationUnitUsers: Reducer<OrganizationUnitsModelState>;
+    saveOrganizationUnitRoles: Reducer<OrganizationUnitsModelState>;
+    saveUpdateOrganizationUnit: Reducer<OrganizationUnitsModelState>;
+    saveFindUsers: Reducer<OrganizationUnitsModelState>;
+    saveFindRoles: Reducer<OrganizationUnitsModelState>;
   };
 }
 const Model: OrganizationUnitsModelType = {

@@ -3,35 +3,30 @@ import { Modal, Tabs, Form, Alert } from "antd";
 import React from 'react';
 import { FormComponentProps } from "antd/es/form";
 import Input from "antd/es/input";
-import Checkbox, { CheckboxChangeEvent } from "antd/es/checkbox";
+import Checkbox from "antd/es/checkbox";
 import PermissionsTree from "@/components/PermissionsTree";
 const { TabPane } = Tabs;
 export interface ICreateOrUpdateRoleProps extends FormComponentProps{
   visible: boolean;
   onCancel: () => void;
-  roleId?:number;
+  onOk:()=>void;
+  roleId:number|null;
 }
-export interface ICreateOrUpdateRoleStates {
-  isDefault:boolean;
-}
-class CreateOrUpdateRoleModal extends AppComponentBase<ICreateOrUpdateRoleProps,ICreateOrUpdateRoleStates>{
-  state={
-    isDefault:false
-  }
-  isDefaultChange=(e:CheckboxChangeEvent)=>{
-    this.setState({
-      isDefault:e.target.checked
-    })
-  }
+class CreateOrUpdateRoleModal extends AppComponentBase<ICreateOrUpdateRoleProps>{
   render() {
-    const { visible, onCancel,roleId} = this.props;
-    const {getFieldDecorator} = this.props.form;
-    const {isDefault} = this.state;
+    const { visible,onOk, onCancel,roleId} = this.props;
+    const {getFieldDecorator,getFieldValue} = this.props.form;
+    let editRoleName='';
+    if(roleId!==null){
+      editRoleName= ": "+getFieldValue("displayName")
+    }
     return (
       <Modal
-        title={roleId==undefined?"新增角色":"编辑角色"}
+        title={roleId==null?"新增角色":`编辑角色${editRoleName}`}
         visible={visible}
         onCancel={onCancel}
+        destroyOnClose
+        onOk={onOk}
       >
         <Tabs defaultActiveKey="1">
           <TabPane tab="角色名称" key="1">
@@ -46,11 +41,22 @@ class CreateOrUpdateRoleModal extends AppComponentBase<ICreateOrUpdateRoleProps,
                 })(<Input />)
                }
             </Form.Item>
-            <Checkbox checked={isDefault}  onChange={this.isDefaultChange} >
-             默认
-            </Checkbox>
+            <Form.Item>
+            {
+              getFieldDecorator("isDefault",{ valuePropName:"checked",
+                rules: [
+                  {
+                    required: true,
+                    message: '这是必填项!' },
+                ],
+              })(<Checkbox  >
+                默认
+               </Checkbox>
 
-            <p style={{marginTop:5}}>新用户将默认拥有此角色. </p>
+               )
+             }
+             <p style={{marginTop:5}}>新用户将默认拥有此角色. </p>
+             </Form.Item>
 
 
            </TabPane>

@@ -1,4 +1,5 @@
 import request from "@/utils/request";
+import { GetLanguageTextsInput } from "./dtos/getLanguageTextsInput";
 
  class LanguagesService{
     async getLanguages() {
@@ -26,9 +27,10 @@ import request from "@/utils/request";
             method: "POST",
         });
     };
-    async getLanguageTexts() {
+    async getLanguageTexts(input:GetLanguageTextsInput) {
         return request('api/services/app/Language/GetLanguageTexts', {
             method: "GET",
+            params:input
         });
     };
     async UpdateLanguageText() {
