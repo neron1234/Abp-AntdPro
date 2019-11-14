@@ -5,11 +5,11 @@
 - react <a href="https://github.com/facebook/react" target="_blank">https://github.com/facebook/react</a>
 - antd-pro <a href="https://github.com/ant-design/ant-design-pro" target="_blank">https://github.com/ant-design/ant-design-pro</a>
 # 运行流程
-1.后台项目还原nuget包
-2.修改Web.Host项目和Migration项目配置文件数据库连接字符串
-3.在EntityFranmeWorkCore项目下执行命令 Update-database或运行Migration项目迁移数据库
-4.前端项目根路径运行npminstall或yarn 还原npm包
-5.dotnet run 启动后台项目  npm start启动前端项目
+<p>1.后台项目还原nuget包</p>
+<p>2.修改Web.Host项目和Migration项目配置文件数据库连接字符串</p>
+<p>3.在EntityFranmeWorkCore项目下执行命令 Update-database或运行Migration项目迁移数据库</p>
+<p>4.前端项目根路径运行npminstall或yarn 还原npm包</p>
+<p>5.dotnet run 启动后台项目  npm start启动前端项目</p>
 # 项目图片
 <img src="https://github.com/xiaoliang1314/Abp-AntdPro/blob/master/TuDou.Antd/src/assets/images/login.jpg?raw=true">
 <img src="https://github.com/xiaoliang1314/Abp-AntdPro/blob/master/TuDou.Antd/src/assets/images/auditlog.jpg?raw=true">
