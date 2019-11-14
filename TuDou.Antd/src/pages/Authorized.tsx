@@ -4,8 +4,8 @@ import { connect } from 'dva';
 import pathToRegexp from 'path-to-regexp';
 import Authorized from '@/utils/Authorized';
 import { ConnectProps, ConnectState, Route } from '@/models/connect';
-import { AppSessionService } from '@/shared/session/appSession';
 import { UserLoginInfoDto } from '@/shared/dtos/appSession/userLoginInfoDto';
+import { SignalRHelper } from '@/shared/helpers/SignalRHelper';
 
 interface AuthComponentProps extends ConnectProps {
   user: UserLoginInfoDto;
@@ -41,6 +41,9 @@ const AuthComponent: React.FC<AuthComponentProps> = ({
 }) => {
   const { routes = [] } = route;
   const isLogin = user && user.id;
+  if(isLogin){
+    SignalRHelper.initSignalR(() => {});
+  }
   return (
     <Authorized
       authority={getRouteAuthority(location.pathname, routes) || ''}
@@ -52,5 +55,5 @@ const AuthComponent: React.FC<AuthComponentProps> = ({
 };
 
 export default connect(({ global }: ConnectState) => ({
-  global,
+  user:global.user,
 }))(AuthComponent);

@@ -4,7 +4,7 @@ namespace TuDou.Grace
 {
     public abstract class GraceDomainServiceBase : DomainService
     {
-        /* Add your common members for all your domain services. */
+        /* 为所有域服务添加公共成员。*/
 
         protected GraceDomainServiceBase()
         {

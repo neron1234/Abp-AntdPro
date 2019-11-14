@@ -3,22 +3,22 @@
 namespace TuDou.Grace
 {
     /// <summary>
-    /// Some consts used in the application.
+    /// 应用程序常量
     /// </summary>
     public class AppConsts
     {
         /// <summary>
-        /// Default page size for paged requests.
+        ///分页请求的默认页面大小。
         /// </summary>
         public const int DefaultPageSize = 10;
 
         /// <summary>
-        /// Maximum allowed page size for paged requests.
+        /// 分页请求允许的最大页面大小。
         /// </summary>
         public const int MaxPageSize = 1000;
 
         /// <summary>
-        /// Default pass phrase for SimpleStringCipher decrypt/encrypt operations
+        /// SimpleStringCipher解密/加密操作的默认传递短语
         /// </summary>
         public const string DefaultPassPhrase = "gsKxGZ012HLL3MI5";
 

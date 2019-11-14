@@ -1,18 +1,17 @@
 import { Button, message, notification } from 'antd';
 import React from 'react';
-import { formatMessage } from 'umi-plugin-react/locale';
 import defaultSettings from '../config/defaultSettings';
 const { pwa } = defaultSettings;
 // if pwa is true
 if (pwa) {
-  
+
   // 如果现在脱机，请通知用户
   window.addEventListener('sw.offline', () => {
-    message.warning(formatMessage({ id: 'app.pwa.offline' }));
+    message.warning("当前处于离线状态");
   });
   // 在页面上弹出一个提示，询问用户是否想使用最新版本
   window.addEventListener('sw.updated', (event: Event) => {
-    
+
     const e = event as CustomEvent;
     const reloadSW = async () => {
       // 检查ServiceWorkerRegistration中是否有状态正在等待的sw
@@ -37,7 +36,7 @@ if (pwa) {
       window.location.reload(true);
       return true;
     };
-   
+
     const key = `open${Date.now()}`;
     const btn = (
       <Button
@@ -47,12 +46,12 @@ if (pwa) {
           reloadSW();
         }}
       >
-        {formatMessage({ id: 'app.pwa.serviceworker.updated.ok' })}
+      刷新
       </Button>
     );
     notification.open({
-      message: formatMessage({ id: 'app.pwa.serviceworker.updated' }),
-      description: formatMessage({ id: 'app.pwa.serviceworker.updated.hint' }),
+      message: "有新内容",
+      description: "  请点击“刷新”按钮或者手动刷新页面",
       btn,
       key,
       onClose: async () => { },
@@ -80,5 +79,5 @@ if (pwa) {
       });
     });
   }
-  
+
 }

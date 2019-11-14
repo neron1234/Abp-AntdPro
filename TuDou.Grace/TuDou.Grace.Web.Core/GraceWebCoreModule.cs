@@ -50,12 +50,12 @@ namespace TuDou.Grace.Web
 
         public override void PreInitialize()
         {
-            //Set default connection string
+            //设置默认连接字符串
             Configuration.DefaultNameOrConnectionString = _appConfiguration.GetConnectionString(
                 GraceConsts.ConnectionStringName
             );
 
-            //Use database for language management
+            //使用数据库进行语言管理
             Configuration.Modules.Zero().LanguageManagement.EnableDbLocalization();
 
             Configuration.Modules.AbpAspNetCore()
@@ -75,11 +75,11 @@ namespace TuDou.Grace.Web
 
             Configuration.ReplaceService<IAppConfigurationAccessor, AppConfigurationAccessor>();
 
-            //Uncomment this line to use Hangfire instead of default background job manager (remember also to uncomment related lines in Startup.cs file(s)).
-            //Configuration.BackgroundJobs.UseHangfire();
+            //取消对这一行的注释，以使用Hangfire代替默认的后台作业管理器(还请记住取消对Startup.cs文件中相关行的注释)。
+            Configuration.BackgroundJobs.UseHangfire();
 
-            //Uncomment this line to use Redis cache instead of in-memory cache.
-            //See app.config for Redis configuration and connection string
+            //取消注释这一行以使用Redis缓存而不是内存缓存。
+            //有关Redis配置和连接字符串，请参阅app.config
             //Configuration.Caching.UseRedis(options =>
             //{
             //    options.ConnectionString = _appConfiguration["Abp:RedisCache:ConnectionString"];

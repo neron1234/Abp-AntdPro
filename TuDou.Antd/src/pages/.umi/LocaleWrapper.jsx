@@ -6,7 +6,7 @@ import {
   intlShape,
   LangContext,
   _setLocaleContext
-} from 'umi-plugin-locale';
+} from 'umi-plugin-locale/lib/locale';
 
 const InjectedWrapper = (() => {
   let sfc = (props, context) => {
@@ -36,7 +36,7 @@ defaultAntd = defaultAntd.default || defaultAntd;
 const localeInfo = {
   'en-US': {
     messages: {
-      ...((locale) => locale.__esModule ? locale.default : locale)(require('D:/个人程序文件/个人项目/AbpZero-AntdPro/TuDou.Antd/src/locales/en-US.ts')),...((locale) => locale.__esModule ? locale.default : locale)(require('D:/个人程序文件/个人项目/AbpZero-AntdPro/TuDou.Antd/src/pages/account/login/locales/en-US.ts')),
+      ...((locale) => locale.__esModule ? locale.default : locale)(require('D:/个人程序文件/个人项目/AbpZero-AntdPro/TuDou.Antd/src/locales/en-US.ts')),
     },
     locale: 'en-US',
     antd: require('antd/lib/locale-provider/en_US'),
@@ -54,7 +54,7 @@ const localeInfo = {
   },
   'zh-CN': {
     messages: {
-      ...((locale) => locale.__esModule ? locale.default : locale)(require('D:/个人程序文件/个人项目/AbpZero-AntdPro/TuDou.Antd/src/locales/zh-CN.ts')),...((locale) => locale.__esModule ? locale.default : locale)(require('D:/个人程序文件/个人项目/AbpZero-AntdPro/TuDou.Antd/src/pages/account/login/locales/zh-CN.ts')),
+      ...((locale) => locale.__esModule ? locale.default : locale)(require('D:/个人程序文件/个人项目/AbpZero-AntdPro/TuDou.Antd/src/locales/zh-CN.ts')),
     },
     locale: 'zh-CN',
     antd: require('antd/lib/locale-provider/zh_CN'),
@@ -63,7 +63,7 @@ const localeInfo = {
   },
   'zh-TW': {
     messages: {
-      ...((locale) => locale.__esModule ? locale.default : locale)(require('D:/个人程序文件/个人项目/AbpZero-AntdPro/TuDou.Antd/src/locales/zh-TW.ts')),...((locale) => locale.__esModule ? locale.default : locale)(require('D:/个人程序文件/个人项目/AbpZero-AntdPro/TuDou.Antd/src/pages/account/login/locales/zh-TW.ts')),
+      ...((locale) => locale.__esModule ? locale.default : locale)(require('D:/个人程序文件/个人项目/AbpZero-AntdPro/TuDou.Antd/src/locales/zh-TW.ts')),
     },
     locale: 'zh-TW',
     antd: require('antd/lib/locale-provider/zh_TW'),

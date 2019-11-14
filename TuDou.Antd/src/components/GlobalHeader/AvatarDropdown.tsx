@@ -1,6 +1,5 @@
 import { Avatar, Icon, Menu, Spin } from 'antd';
 import { ClickParam } from 'antd/es/menu';
-import { FormattedMessage } from 'umi-plugin-react/locale';
 import React from 'react';
 import { connect } from 'dva';
 import router from 'umi/router';
@@ -24,7 +23,7 @@ class AvatarDropdown extends React.Component<GlobalHeaderRightProps> {
   }
   onMenuClick = (event: ClickParam) => {
     const { key } = event;
-  
+
     if (key === 'logout') {
       const { dispatch } = this.props;
       if (dispatch) {
@@ -53,13 +52,13 @@ class AvatarDropdown extends React.Component<GlobalHeaderRightProps> {
         {menu && (
           <Menu.Item key="center">
             <Icon type="user" />
-            <FormattedMessage id="menu.account.center" defaultMessage="account center" />
+            个人中心
           </Menu.Item>
         )}
         {menu && (
           <Menu.Item key="settings">
             <Icon type="setting" />
-            <FormattedMessage id="menu.account.settings" defaultMessage="account settings" />
+            个人设置
           </Menu.Item>
         )}
         {menu && <Menu.Divider />}
@@ -81,7 +80,7 @@ class AvatarDropdown extends React.Component<GlobalHeaderRightProps> {
           <span className={styles.name}>{user.name}</span>
         </span>
       </HeaderDropdown>
-   
+
     ) : (
       <Spin size="small" style={{ marginLeft: 8, marginRight: 8 }} />
     );

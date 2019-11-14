@@ -29,7 +29,7 @@ const UserLayout: React.SFC<UserLayoutProps> = props => {
   } = props;
   const { breadcrumb } = getMenuData(routes);
   useEffect(() => {
-    
+
     if (dispatch) {
       dispatch({
         type: 'global/initAbp',

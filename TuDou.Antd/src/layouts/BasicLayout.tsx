@@ -78,7 +78,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
    */
 
   useEffect(() => {
-    
+
     if (dispatch) {
       dispatch({
         type: 'global/initAbp',
@@ -97,7 +97,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
    */
   const handleMenuCollapse = (payload: boolean): void => {
     if (dispatch) {
-      
+
       dispatch({
         type: 'global/changeLayoutCollapsed',
         payload,
@@ -118,10 +118,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
       breadcrumbRender={(routers = []) => [
         {
           path: '/',
-          breadcrumbName: formatMessage({
-            id: 'menu.home',
-            defaultMessage: 'Home',
-          }),
+          breadcrumbName: "主页",
         },
         ...routers,
       ]}

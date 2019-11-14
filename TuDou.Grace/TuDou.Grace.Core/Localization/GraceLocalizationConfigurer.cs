@@ -14,7 +14,7 @@ namespace TuDou.Grace.Localization
                 new DictionaryBasedLocalizationSource(
                     GraceConsts.LocalizationSourceName,
                     new XmlEmbeddedFileLocalizationDictionaryProvider(
-                        typeof(GraceLocalizationConfigurer).GetAssembly(),
+                        Assembly.GetExecutingAssembly(),
                         "TuDou.Grace.Localization.Grace"
                     )
                 )

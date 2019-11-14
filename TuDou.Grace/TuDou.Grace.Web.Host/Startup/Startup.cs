@@ -59,15 +59,15 @@ namespace TuDou.Grace.Web.Startup
 
             services.AddSignalR(options => { options.EnableDetailedErrors = true; });
 
-            //Configure CORS for angular2 UI
+            //为React UI配置CORS
             services.AddCors(options =>
             {
                 options.AddPolicy(DefaultCorsPolicyName, builder =>
                 {
-                    //App:CorsOrigins in appsettings.json can contain more than one address with splitted by comma.
+                    //应用:在appsettings CorsOrigins。json可以包含多个由逗号分隔的地址。
                     builder
                         .WithOrigins(
-                            // App:CorsOrigins in appsettings.json can contain more than one address separated by comma.
+                            // 应用:在appsettings CorsOrigins。json可以包含多个由逗号分隔的地址。
                             _appConfiguration["App:CorsOrigins"]
                                 .Split(",", StringSplitOptions.RemoveEmptyEntries)
                                 .Select(o => o.RemovePostFix("/"))
@@ -83,7 +83,7 @@ namespace TuDou.Grace.Web.Startup
             IdentityRegistrar.Register(services);
             AuthConfigurer.Configure(services, _appConfiguration);
 
-            //Identity server
+            //身份认证服务器
             if (bool.Parse(_appConfiguration["IdentityServer:IsEnabled"]))
             {
                 IdentityServerRegistrar.Register(services, _appConfiguration);
@@ -91,7 +91,7 @@ namespace TuDou.Grace.Web.Startup
 
             if (WebConsts.SwaggerUiEnabled)
             {
-                //Swagger - Enable this line and the related lines in Configure method to enable swagger UI
+                //Swagger—启用这一行和配置方法中的相关行，以启用Swagger UI
                 services.AddSwaggerGen(options =>
                 {
                     options.SwaggerDoc("v1", new Info { Title = "Grace API", Version = "v1" });
@@ -103,13 +103,13 @@ namespace TuDou.Grace.Web.Startup
                     options.OperationFilter<SwaggerOperationFilter>();
                     options.CustomDefaultSchemaIdSelector();
 
-                    //Note: This is just for showing Authorize button on the UI. 
-                    //Authorize button's behaviour is handled in wwwroot/swagger/ui/index.html
+                    //注意:这只是为了在UI上显示Authorize按钮。
+                    //Authorize按钮的行为在wwwroot/swagger/ui/index.htm中处理
                     options.AddSecurityDefinition("Bearer", new BasicAuthScheme());
                 });
             }
 
-            //Recaptcha
+            //验证码
             services.AddRecaptcha(new RecaptchaOptions
             {
                 SiteKey = _appConfiguration["Recaptcha:SiteKey"],
@@ -118,7 +118,7 @@ namespace TuDou.Grace.Web.Startup
 
             if (WebConsts.HangfireDashboardEnabled)
             {
-                //Hangfire(Enable to use Hangfire instead of default job manager)
+                //Hangfire(支持使用Hangfire而不是默认的作业管理器)
                 services.AddHangfire(config =>
                 {
                     config.UseSqlServerStorage(_appConfiguration.GetConnectionString("Default"));
@@ -129,11 +129,11 @@ namespace TuDou.Grace.Web.Startup
             {
                 services.AddAndConfigureGraphQL();
             }
-            
-            //Configure Abp and Dependency Injection
+
+            //配置Abp和依赖项注入
             return services.AddAbp<GraceWebHostModule>(options =>
             {
-                //Configure Log4Net logging
+                //配置Log4Net日志
                 options.IocManager.IocContainer.AddFacility<LoggingFacility>(
                     f => f.UseAbpLog4Net().WithConfig("log4net.config")
                 );
@@ -144,7 +144,7 @@ namespace TuDou.Grace.Web.Startup
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            //Initializes ABP framework.
+            //初始化ABP框架。
             app.UseAbp(options =>
             {
                 options.UseAbpRequestLocalization = false; //used below: UseAbpRequestLocalization
@@ -189,7 +189,7 @@ namespace TuDou.Grace.Web.Startup
 
             if (WebConsts.HangfireDashboardEnabled)
             {
-                //Hangfire dashboard &server(Enable to use Hangfire instead of default job manager)
+                //Hangfire仪表盘和服务器(支持使用Hangfire而不是默认的作业管理器)
                 app.UseHangfireDashboard(WebConsts.HangfireDashboardEndPoint, new DashboardOptions
                 {
                     Authorization = new[] { new AbpHangfireAuthorizationFilter(AppPermissions.Pages_Administration_HangfireDashboard) }
@@ -225,9 +225,9 @@ namespace TuDou.Grace.Web.Startup
 
             if (WebConsts.SwaggerUiEnabled)
             {
-                // Enable middleware to serve generated Swagger as a JSON endpoint
+                // 允许中间件将生成的Swagger作为JSON端点
                 app.UseSwagger();
-                // Enable middleware to serve swagger-ui assets (HTML, JS, CSS etc.)
+                // 使中间件能够服务swagger-ui资产(HTML, JS, CSS等)
 
                 app.UseSwaggerUI(options =>
                 {

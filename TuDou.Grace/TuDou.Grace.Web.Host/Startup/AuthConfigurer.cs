@@ -28,22 +28,22 @@ namespace TuDou.Grace.Web.Startup
                 {
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
-                        // The signing key must match!
+                        // 签名密钥必须匹配!
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration["Authentication:JwtBearer:SecurityKey"])),
 
-                        // Validate the JWT Issuer (iss) claim
+                        // 验证JWT发布方(iss)的声明
                         ValidateIssuer = true,
                         ValidIssuer = configuration["Authentication:JwtBearer:Issuer"],
 
-                        // Validate the JWT Audience (aud) claim
+                        // 验证JWT受众(aud)声明
                         ValidateAudience = true,
                         ValidAudience = configuration["Authentication:JwtBearer:Audience"],
 
-                        // Validate the token expiry
+                        //验证令牌过期
                         ValidateLifetime = true,
 
-                        // If you want to allow a certain amount of clock drift, set that here
+                        // 如果你想让一定的时钟漂移，在这里设置
                         ClockSkew = TimeSpan.Zero
                     };
 
@@ -70,8 +70,8 @@ namespace TuDou.Grace.Web.Startup
             }
         }
 
-        /* This method is needed to authorize SignalR javascript client.
-         * SignalR can not send authorization header. So, we are getting it from query string as an encrypted text. */
+        /* 需要使用此方法授权SignalR javascript客户端。
+         * SignalR无法发送授权头。我们从查询字符串中获取加密文本. */
         private static Task QueryStringTokenResolver(MessageReceivedContext context)
         {
             if (!context.HttpContext.Request.Path.HasValue)
@@ -109,7 +109,7 @@ namespace TuDou.Grace.Web.Startup
                 return Task.CompletedTask;
             }
 
-            //Set auth token from cookie
+            //设置来自cookie的验证令牌
             context.Token = SimpleStringCipher.Instance.Decrypt(qsAuthToken, AppConsts.DefaultPassPhrase);
             return Task.CompletedTask;
         }

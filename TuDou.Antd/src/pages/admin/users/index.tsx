@@ -111,7 +111,7 @@ class Users extends AppComponentBase<UsersProps, UsersStates> {
       createOrUpdateModalVisible: !this.state.createOrUpdateModalVisible
     })
   }
-  handleTableChange(pagination: PaginationConfig) {
+  handleTableChange=(pagination: PaginationConfig)=>{
     this.setState({
       request: {
         ...this.state.request,

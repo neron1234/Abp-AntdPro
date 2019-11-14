@@ -14,7 +14,7 @@ export interface PermissionsTreeProps extends ConnectProps {
   selectedPermissionsName:string[];
 }
 class PermissionsTree extends AppComponentBase<PermissionsTreeProps>{
-  async componentDidMount() {
+  async componentWillMount() {
       const { dispatch } = this.props;
       await dispatch!({
         type: "permissions/getAllPermissions"

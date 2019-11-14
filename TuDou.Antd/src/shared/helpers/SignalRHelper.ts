@@ -7,7 +7,7 @@ export class SignalRHelper {
         let encryptedAuthToken = abp.utils.getCookieValue(AppConsts.authorization.encrptedAuthTokenName);
 
         abp.signalr = {
-            autoConnect: false, // _zone.runOutsideAngular in ChatSignalrService
+            autoConnect: true, // _zone.runOutsideAngular in ChatSignalrService
             // autoReconnect: true,
             connect: ()=>{},
             hubs: {
@@ -18,7 +18,6 @@ export class SignalRHelper {
             startConnection: undefined,
             url: '/signalr'
         };
-
         let script = document.createElement('script');
         script.onload = () => {
             callback();

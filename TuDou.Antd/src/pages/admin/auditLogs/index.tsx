@@ -1,86 +1,181 @@
 import AppComponentBase from "@/components/AppComponentBase";
 import React from 'react';
-import { Card, Table, Button, Tag, Dropdown, Menu, Icon } from "antd";
+import { Card, Table, Button, Tag, Dropdown, Menu, Icon, Tabs } from "antd";
 import { PageHeaderWrapper } from "@ant-design/pro-layout";
 import { connect } from "dva";
 import { ConnectState } from "@/models/connect";
 import { AnyAction, Dispatch } from "redux";
-import { AuditLogsStateType } from "@/models/admin/auditLogs";
+import { AuditLogsModelState } from "@/models/admin/auditLogs";
 import { GetAuditLogsInput } from "@/services/auditLog/dtos/getAuditLogsInput";
 import moment from "moment";
+import { PaginationConfig } from "antd/lib/table";
+import AuditLogsDetail from "./components/auditLogsDetail";
+import { AuditLogListDto } from '@/services/auditLog/dtos/auditLogListDto';
+import { GetEntityChangeInput } from './../../../services/auditLog/dtos/getEntityChangeInput';
+import EntityChangeDetail from "./components/entityChangeDetail";
+import { EntityChangeListDto } from '@/services/auditLog/dtos/entityChangeListDto';
+import { EntityChangeListDto } from './../../../services/auditLog/dtos/entityChangeListDto';
 export interface AuditLogsProps {
   dispatch: Dispatch<AnyAction>;
-  auditLogs: AuditLogsStateType;
-  loading:boolean;
+  auditLogs: AuditLogsModelState;
+  historyloading: boolean;
+  changeloading:boolean;
 }
 export interface AuditLogsStates {
-     request:GetAuditLogsInput
+  auditLogrequest: GetAuditLogsInput;
+  entityChangeRequest:GetEntityChangeInput;
+  auditLogItem?:AuditLogListDto;
+  auditLogsDetailVisible:boolean;
+  entityChangeItem?:EntityChangeListDto;
+  entityChangeDetailVisible:boolean;
 }
 @connect(({ auditLogs, loading }: ConnectState) => ({
-    auditLogs: auditLogs,
-    loading: loading.effects['auditLogs/getAuditLogs'],
+  auditLogs: auditLogs,
+  historyloading: loading.effects['auditLogs/getAuditLogs'],
+  changeloading:loading.effects['auditLogs/getAuditLogs'],
 }))
 class AuditLogs extends AppComponentBase<AuditLogsProps, AuditLogsStates> {
-  state={
-      request:{
-        startDate:moment().startOf('day').toISOString(),
-        endDate:  moment().endOf('day').toISOString(),
-        userName:"",
-        serviceName:"",
-        methodName:"",
-        browserInfo:"",
-        maxResultCount:this.maxResultCount,
-        skipCount:this.skipCount
+  state = {
+    auditLogrequest: {
+      startDate: moment().startOf('day').toISOString(),
+      endDate: moment().endOf('day').toISOString(),
+      userName: "",
+      serviceName: "",
+      methodName: "",
+      browserInfo: "",
+      maxResultCount: this.maxResultCount,
+      skipCount: this.skipCount
+    },
+    entityChangeRequest:{
+      startDate: moment().startOf('day').toISOString(),
+      endDate: moment().endOf('day').toISOString(),
+      userName: "",
+      maxResultCount: this.maxResultCount,
+      skipCount: this.skipCount,
+      entityTypeFullName:'',
+    },
+    entityChangeItem:undefined,
+    entityChangeDetailVisible:false,
+    auditLogItem:undefined,
+    auditLogsDetailVisible:false
+  }
+  handleTableChange = (pagination: PaginationConfig) => {
+    this.setState({
+      auditLogrequest: {
+        ...this.state.auditLogrequest,
+        maxResultCount: pagination.pageSize!,
+        skipCount: pagination.current!
       }
+    }, () => {
+      this.getAuditLogTableData();
+    })
+
+  }
+ async auditLogsDetailModalOpen(item:AuditLogListDto){
+   await this.setState({
+      auditLogItem:item
+    },()=>{
+      this.auditLogsDetailModal();
+    })
+
+  }
+  async entityChangeDetailModalOpen(entityChangeItem:EntityChangeListDto){
+    const {dispatch} =this.props;
+    await this.setState({
+      entityChangeItem
+    })
+    await dispatch({
+      type: 'auditLogs/getEntityPropertyChanges',
+      payload:entityChangeItem.id
+    })
+    this.entityChangeDetailModal();
+   }
+  entityChangeDetailModal=()=>{
+    this.setState({
+      entityChangeDetailVisible:!this.state.entityChangeDetailVisible
+    })
+  }
+  auditLogsDetailModal=()=>{
+    this.setState({
+      auditLogsDetailVisible:!this.state.auditLogsDetailVisible
+    })
   }
   componentDidMount() {
-    this.getTableData();
+    this.getAuditLogTableData();
   }
-  // 获取表格数据
-  getTableData() {
+  // 获取审计日志表格数据
+ async getAuditLogTableData() {
     const { dispatch } = this.props;
-    dispatch({
+   await dispatch({
       type: 'auditLogs/getAuditLogs',
-      payload:this.state.request
+      payload: this.state.auditLogrequest
     });
   }
+  // 获取实体历史表格数据
+ async getEntityChangeTableData() {
+    const { dispatch } = this.props;
+    await  dispatch({
+      type: 'auditLogs/getEntityChanges',
+      payload: this.state.entityChangeRequest
+    });
+  }
+  tabsChange=async (activeKey:string)=>{
+      if(activeKey==="auditlog"){
+        await  this.getAuditLogTableData();
+      }else if(activeKey==="entityChange"){
+        await   this.getEntityChangeTableData();
+      }
+
+  }
   public render() {
-    const {loading} = this.props;
-    const { auditLogs } = this.props.auditLogs;
-    const menu = (
-      <Menu>
-        <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
-            修改
-          </a>
-        </Menu.Item>
-        <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
-            删除
-      </a>
-        </Menu.Item>
-      </Menu>
-    );
-    const columns = [
+    const { historyloading,changeloading } = this.props;
+    const { auditLogs,entityPropertyChanges,entityChanges } = this.props.auditLogs;
+    const {entityChangeDetailVisible, auditLogsDetailVisible,auditLogItem,entityChangeItem} =this.state;
+    const entityChangeColumns=[
       {
         title: '操作',
         dataIndex: 'action',
         key: 'action',
         render: (text: any, record: any, index: number) => {
-          return <div>
-            <Dropdown overlay={menu} trigger={['click']} placement="bottomLeft">
-              <Button icon="setting" type="primary">操作<Icon type="down" /></Button>
-            </Dropdown>
-          </div>
+          return     <Button onClick={ async()=>{await this.entityChangeDetailModalOpen(record)}} icon="search"  type="default"></Button>
+
+        }
+      },
+      {
+        title: '对象',
+        dataIndex: 'entityTypeFullName',
+        key: 'entityTypeFullName',
+      },
+      {
+        title: '用户名',
+        dataIndex: 'userName',
+        key: 'userName',
+      },
+      {
+        title: '修改时间',
+        dataIndex: 'changeTime',
+        key: 'changeTime',
+      }
+    ]
+    const historyColumns = [
+      {
+        title: '操作',
+        dataIndex: 'action',
+        key: 'action',
+        render: (text: any, record: any, index: number) => {
+          return     <Button onClick={ async()=>{await this.auditLogsDetailModalOpen(record)}} icon="search"  type="default"></Button>
+
         }
       },
       {
         title: '',
         dataIndex: 'exception',
+        width:'50px',
         key: 'exception',
         render: (text: any, record: any, index: number) => {
-            return (text==null&&text=="")?null:<div><Icon  type="check"/></div>
-          }
+          return (text == null && text == "") ? null : <div>    <Icon type="check-circle" theme="twoTone" twoToneColor="#1dc9b7" />
+          </div>
+        }
       },
       {
         title: '用户名',
@@ -114,16 +209,45 @@ class AuditLogs extends AppComponentBase<AuditLogsProps, AuditLogsStates> {
       }
 
     ];
+    function showPageTotal(total: number) {
+      return `共 ${total} 项`;
+    }
     return (
-      <PageHeaderWrapper >
+      <PageHeaderWrapper>
+
         <Card>
-          <Table
-           loading={loading}
-           size="small"
-            dataSource={auditLogs == undefined ? [] : auditLogs.items}
-            pagination={false}
-            columns={columns} />
+          <Tabs defaultActiveKey="auditlog" onChange={this.tabsChange}>
+            <Tabs.TabPane key="auditlog" tab="审计日志">
+              <Table
+                loading={historyloading}
+                size="default"
+                onChange={this.handleTableChange}
+                dataSource={auditLogs == undefined ? [] : auditLogs.items}
+                pagination={{ showTotal: showPageTotal, pageSize: this.state.auditLogrequest.maxResultCount, total: auditLogs == undefined ? 0 : auditLogs.totalCount }}
+                columns={historyColumns} />
+            </Tabs.TabPane>
+            <Tabs.TabPane key="entityChange" tab="更改日志">
+              <Table
+                loading={changeloading}
+                size="default"
+                onChange={this.handleTableChange}
+                dataSource={entityChanges == undefined ? [] : entityChanges.items}
+                pagination={{ showTotal: showPageTotal, pageSize: this.state.entityChangeRequest.maxResultCount, total: entityChanges == undefined ? 0 : entityChanges.totalCount }}
+                columns={entityChangeColumns} />
+            </Tabs.TabPane>
+          </Tabs>
+
         </Card>
+        <EntityChangeDetail
+        entityChangeItem={entityChangeItem}
+        entityPropertyChanges={entityPropertyChanges}
+        visible={entityChangeDetailVisible}
+        onCancel={this.entityChangeDetailModal}
+        />
+        <AuditLogsDetail
+        auditLogItem={auditLogItem}
+        onCancel={this.auditLogsDetailModal}
+        visible={auditLogsDetailVisible}/>
       </PageHeaderWrapper>
     )
   }

@@ -1,15 +1,13 @@
 import { Icon, Tooltip } from 'antd';
 import React from 'react';
 import { connect } from 'dva';
-import { formatMessage } from 'umi-plugin-react/locale';
 import { ConnectProps, ConnectState } from '@/models/connect';
-
 import Avatar from './AvatarDropdown';
 import HeaderSearch from '../HeaderSearch';
 import SelectLang from '../SelectLang';
 import styles from './index.less';
 import LoginRecord from '../LoginRecord';
-
+import Notice from './NoticeIconView';
 export type SiderTheme = 'light' | 'dark';
 export interface GlobalHeaderRightProps extends ConnectProps {
   theme?: SiderTheme;
@@ -35,19 +33,9 @@ const GlobalHeaderRight: React.SFC<GlobalHeaderRightProps> = props => {
     <LoginRecord onCancel={loginRecordModalCancel} visible={loginRecordModal}></LoginRecord>
       <HeaderSearch
         className={`${styles.action} ${styles.search}`}
-        placeholder={formatMessage({
-          id: 'component.globalHeader.search',
-        })}
+        placeholder="搜索"
         dataSource={[
-          formatMessage({
-            id: 'component.globalHeader.search.example1',
-          }),
-          formatMessage({
-            id: 'component.globalHeader.search.example2',
-          }),
-          formatMessage({
-            id: 'component.globalHeader.search.example3',
-          }),
+
         ]}
         onSearch={value => {
           console.log('input', value);
@@ -57,9 +45,7 @@ const GlobalHeaderRight: React.SFC<GlobalHeaderRightProps> = props => {
         }}
       />
       <Tooltip
-        title={formatMessage({
-          id: 'component.globalHeader.help',
-        })}
+        title="帮助"
       >
         <a
           target="_blank"
@@ -70,6 +56,7 @@ const GlobalHeaderRight: React.SFC<GlobalHeaderRightProps> = props => {
           <Icon type="question-circle-o" />
         </a>
       </Tooltip>
+      <Notice/>
       <Avatar />
       <SelectLang className={styles.action} />
     </div>

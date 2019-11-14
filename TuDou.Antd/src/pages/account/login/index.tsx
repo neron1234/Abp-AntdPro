@@ -1,13 +1,11 @@
 import { Alert, Checkbox, Icon } from 'antd';
-import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { Component } from 'react';
-
 import { CheckboxChangeEvent } from 'antd/es/checkbox';
 import { Dispatch, AnyAction } from 'redux';
 import { FormComponentProps } from 'antd/es/form';
 import Link from 'umi/link';
 import { connect } from 'dva';
-import { StateType } from '@/models/login';
+import { LoginModalState } from '@/models/login';
 import LoginComponents from './components/Login';
 import styles from './style.less';
 import { LoginParamsType } from '@/services/login';
@@ -19,7 +17,7 @@ const { Tab, UserName, Password, Mobile, Captcha, Submit } = LoginComponents;
 
 export interface LoginProps {
   dispatch: Dispatch<AnyAction>;
-  userLogin: StateType;
+  userLogin: LoginModalState;
   submitting: boolean;
 }
 export interface LoginState {
@@ -79,7 +77,7 @@ class Login extends Component<LoginProps, LoginState> {
             try {
               const success = await ((dispatch({
                 type: 'login/getCaptcha',
-                payload: values.mobile,
+                payload: values.userName,
               }) as unknown) as Promise<unknown>);
               resolve(!!success);
             } catch (error) {
@@ -122,30 +120,30 @@ class Login extends Component<LoginProps, LoginState> {
             this.loginForm = form;
           }}
         >
-          <Tab key="account" tab={formatMessage({ id: 'user-login.login.tab-login-credentials' })}>
-            {status === 'error' &&
+          <Tab key="account" tab="账户密码登录">
+            {status === false &&
               loginType === 'account' &&
               !submitting &&
               this.renderMessage(
-                formatMessage({ id: 'user-login.login.message-invalid-credentials' }),
+                "用户名或密码有误",
               )}
             <UserName
               name="userNameOrEmailAddress"
-              placeholder={`${formatMessage({ id: 'user-login.login.userName' })}: admin or user`}
+              placeholder="用户名"
               rules={[
                 {
                   required: true,
-                  message: formatMessage({ id: 'user-login.userName.required' }),
+                  message: "用户名不能为空",
                 },
               ]}
             />
             <Password
               name="password"
-              placeholder={`${formatMessage({ id: 'user-login.login.password' })}: ant.design`}
+              placeholder="密码"
               rules={[
                 {
                   required: true,
-                  message: formatMessage({ id: 'user-login.password.required' }),
+                  message: "密码不能为空"
                 },
               ]}
               onPressEnter={e => {
@@ -156,60 +154,60 @@ class Login extends Component<LoginProps, LoginState> {
               }}
             />
           </Tab>
-          <Tab key="mobile" tab={formatMessage({ id: 'user-login.login.tab-login-mobile' })}>
-            {status === 'error' &&
+          <Tab key="mobile" tab="手机号登陆">
+            {status === false &&
               loginType === 'mobile' &&
               !submitting &&
               this.renderMessage(
-                formatMessage({ id: 'user-login.login.message-invalid-verification-code' }),
+                "验证码错误",
               )}
             <Mobile
               name="mobile"
-              placeholder={formatMessage({ id: 'user-login.phone-number.placeholder' })}
+              placeholder="手机号"
               rules={[
                 {
                   required: true,
-                  message: formatMessage({ id: 'user-login.phone-number.required' }),
+                  message: "手机号不能为空",
                 },
                 {
                   pattern: /^1\d{10}$/,
-                  message: formatMessage({ id: 'user-login.phone-number.wrong-format' }),
+                  message: "请输入正确格式手机号"
                 },
               ]}
             />
             <Captcha
               name="captcha"
-              placeholder={formatMessage({ id: 'user-login.verification-code.placeholder' })}
+              placeholder="请输入验证码"
               countDown={120}
               onGetCaptcha={this.onGetCaptcha}
-              getCaptchaButtonText={formatMessage({ id: 'user-login.form.get-captcha' })}
-              getCaptchaSecondText={formatMessage({ id: 'user-login.captcha.second' })}
+              getCaptchaButtonText="获取验证码"
+              getCaptchaSecondText="秒"
               rules={[
                 {
                   required: true,
-                  message: formatMessage({ id: 'user-login.verification-code.required' }),
+                  message: "验证码不能为空",
                 },
               ]}
             />
           </Tab>
           <div>
             <Checkbox checked={rememberClient} onChange={this.changeAutoLogin}>
-              <FormattedMessage id="user-login.login.remember-me" />
+              自动登录
             </Checkbox>
             <a style={{ float: 'right' }} href="">
-              <FormattedMessage id="user-login.login.forgot-password" />
+             忘记密码
             </a>
           </div>
           <Submit loading={submitting}>
-            <FormattedMessage id="user-login.login.login" />
+           登陆
           </Submit>
           <div className={styles.other}>
-            <FormattedMessage id="user-login.login.sign-in-with" />
+            其他登录方式
             <Icon type="alipay-circle" className={styles.icon} theme="outlined" />
             <Icon type="taobao-circle" className={styles.icon} theme="outlined" />
             <Icon type="weibo-circle" className={styles.icon} theme="outlined" />
             <Link className={styles.register} to="/user/register">
-              <FormattedMessage id="user-login.login.signup" />
+              注册账户
             </Link>
           </div>
         </LoginComponents>

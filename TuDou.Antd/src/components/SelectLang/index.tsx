@@ -1,5 +1,5 @@
 import { Icon, Menu } from 'antd';
-import { formatMessage, setLocale } from 'umi-plugin-react/locale';
+import {setLocale } from 'umi-plugin-react/locale';
 
 import { ClickParam } from 'antd/es/menu';
 import React from 'react';
@@ -30,7 +30,7 @@ const SelectLang: React.FC<SelectLangProps> = props => {
   return (
     <HeaderDropdown overlay={langMenu} placement="bottomRight">
       <span className={classNames(styles.dropDown, className)}>
-        <Icon type="global" title={formatMessage({ id: 'navBar.lang' })} />
+        <Icon type="global" title="语言" />
       </span>
     </HeaderDropdown>
   );

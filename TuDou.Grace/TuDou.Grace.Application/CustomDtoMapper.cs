@@ -127,7 +127,7 @@ namespace TuDou.Grace
             //Friendship
             configuration.CreateMap<Friendship, FriendDto>();
             configuration.CreateMap<FriendCacheItem, FriendDto>();
-
+            configuration.CreateMap<EntityPropertyChange, EntityPropertyChangeDto>();
             //OrganizationUnit
             configuration.CreateMap<OrganizationUnit, OrganizationUnitDto>();
 

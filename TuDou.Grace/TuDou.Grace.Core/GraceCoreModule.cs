@@ -39,47 +39,46 @@ namespace TuDou.Grace
     {
         public override void PreInitialize()
         {
-            //workaround for issue: https://github.com/aspnet/EntityFrameworkCore/issues/9825
-            //related github issue: https://github.com/aspnet/EntityFrameworkCore/issues/10407
+            //解决的问题:https://github.com/aspnet/EntityFrameworkCore/issues/9825
+            //github相关问题: https://github.com/aspnet/EntityFrameworkCore/issues/10407
             AppContext.SetSwitch("Microsoft.EntityFrameworkCore.Issue9825", true);
 
             Configuration.Auditing.IsEnabledForAnonymousUsers = true;
 
-            //Declare entity types
+            //声明实体类型
             Configuration.Modules.Zero().EntityTypes.Tenant = typeof(Tenant);
             Configuration.Modules.Zero().EntityTypes.Role = typeof(Role);
             Configuration.Modules.Zero().EntityTypes.User = typeof(User);
 
             GraceLocalizationConfigurer.Configure(Configuration.Localization);
-
-            //Adding feature providers
+            //添加功能提供者
             Configuration.Features.Providers.Add<AppFeatureProvider>();
 
-            //Adding setting providers
+            //添加设置供应商
             Configuration.Settings.Providers.Add<AppSettingProvider>();
 
-            //Adding notification providers
+            //添加通知供应商
             Configuration.Notifications.Providers.Add<AppNotificationProvider>();
 
-            //Enable this line to create a multi-tenant application.
+            //允许这一行创建一个多租户应用程序。
             Configuration.MultiTenancy.IsEnabled = GraceConsts.MultiTenancyEnabled;
 
-            //Enable LDAP authentication (It can be enabled only if MultiTenancy is disabled!)
+            //启用LDAP身份验证(只有在禁用多租户时才能启用它!)
             //Configuration.Modules.ZeroLdap().Enable(typeof(AppLdapAuthenticationSource));
 
-            //Twilio - Enable this line to activate Twilio SMS integration
+            //使这条线，以激活黄昏短信整合
             //Configuration.ReplaceService<ISmsSender,TwilioSmsSender>();
 
-            // MailKit configuration
+            // MailKit配置
             Configuration.Modules.AbpMailKit().SecureSocketOption = SecureSocketOptions.Auto;
             Configuration.ReplaceService<IMailKitSmtpBuilder, GraceMailKitSmtpBuilder>(DependencyLifeStyle.Transient);
 
-            //Configure roles
+            //配置角色
             AppRoleConfig.Configure(Configuration.Modules.Zero().RoleManagement);
 
             if (DebugHelper.IsDebug)
             {
-                //Disabling email sending in debug mode
+                //在调试模式下禁用电子邮件发送
                 Configuration.ReplaceService<IEmailSender, NullEmailSender>(DependencyLifeStyle.Transient);
             }
 

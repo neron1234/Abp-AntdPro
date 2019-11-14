@@ -14,7 +14,7 @@ export interface OrganizationUnitTreeProps extends ConnectProps {
   selectedOrganizationUnits:string[];
 }
 class OrganizationUnitTree extends AppComponentBase<OrganizationUnitTreeProps>{
-  async componentDidMount() {
+  async componentWillMount() {
       const { dispatch } = this.props;
       await dispatch!({
         type: "organizationUnitTree/getAllOrganizationUnits"
