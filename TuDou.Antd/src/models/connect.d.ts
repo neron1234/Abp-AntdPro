@@ -13,6 +13,7 @@ import { AuditLogsModelType, AuditLogsModelState } from './admin/auditLogs';
 import { PermissionModelType, PermissionModelState } from './permission';
 import { OrganizationUnitTreeModelState } from './organizationUnitTree';
 import { LoginState } from '@/pages/account/login';
+import { NotificationModelState } from './notification';
 export { GlobalModelState, SettingModelState, UserModelState };
 
 export interface Loading {
@@ -31,6 +32,7 @@ export interface Loading {
     auditLogs?:boolean;
     permissions?:boolean;
     organizationUnitTree?:boolean;
+    notification?:boolean;
   };
 }
 
@@ -46,6 +48,7 @@ export interface ConnectState {
   languages: LanguagesModelState;
   auditLogs:AuditLogsModelState;
   permissions:PermissionModelState;
+  notification:NotificationModelState;
   organizationUnitTree:OrganizationUnitTreeModelState;
 }
 

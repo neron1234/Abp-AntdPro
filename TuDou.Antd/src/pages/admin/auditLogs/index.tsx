@@ -137,7 +137,7 @@ class AuditLogs extends AppComponentBase<AuditLogsProps, AuditLogsStates> {
         dataIndex: 'action',
         key: 'action',
         render: (text: any, record: any, index: number) => {
-          return     <Button onClick={ async()=>{await this.entityChangeDetailModalOpen(record)}} icon="search"  type="default"></Button>
+          return     <Button onClick={ async()=>{await this.entityChangeDetailModalOpen(record)}} icon="search"  type="primary"></Button>
 
         }
       },
@@ -163,7 +163,7 @@ class AuditLogs extends AppComponentBase<AuditLogsProps, AuditLogsStates> {
         dataIndex: 'action',
         key: 'action',
         render: (text: any, record: any, index: number) => {
-          return     <Button onClick={ async()=>{await this.auditLogsDetailModalOpen(record)}} icon="search"  type="default"></Button>
+          return     <Button onClick={ async()=>{await this.auditLogsDetailModalOpen(record)}} icon="search"  type="primary"></Button>
 
         }
       },

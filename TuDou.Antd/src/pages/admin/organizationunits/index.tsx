@@ -316,10 +316,6 @@ class OrganizationUnits extends AppComponentBase<OrganizationUnitsProps, Organiz
           targetFunction(item: OrganizationUnitDto) {
             return item.id;
           }
-        },
-        {
-          target: 'selectable',
-          value: true
         }
       ]);
     const organizationUnitUserTableColumns = [

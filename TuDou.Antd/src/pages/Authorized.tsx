@@ -42,7 +42,7 @@ const AuthComponent: React.FC<AuthComponentProps> = ({
   const { routes = [] } = route;
   const isLogin = user && user.id;
   if(isLogin){
-    SignalRHelper.initSignalR(() => {});
+    SignalRHelper.initSignalR(() => {abp.signalr.connect()});
   }
   return (
     <Authorized

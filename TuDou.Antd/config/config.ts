@@ -141,7 +141,6 @@ export default {
                 {
                   path: '/admin/languageTexts/:name',
                   name: '语言列表',
-                  icon: 'unordered-list',
                   component: './admin/languages/languageText',
                   hideInMenu:true,
                 },
@@ -150,6 +149,12 @@ export default {
                   name: '审计日志',
                   icon: 'schedule',
                   component: './admin/auditLogs',
+                },
+                {
+                  path: '/admin/notifications',
+                  name: '通知',
+                  component: './admin/shared/notifications',
+                  hideInMenu:true,
                 },
               ],
             },

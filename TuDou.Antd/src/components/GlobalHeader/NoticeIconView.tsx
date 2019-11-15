@@ -1,142 +1,104 @@
 import React, { Component } from 'react';
-import { Tag, message } from 'antd';
 import { connect } from 'dva';
-import groupBy from 'lodash/groupBy';
-import moment from 'moment';
-
-import { NoticeItem } from '@/models/global';
 import NoticeIcon from '../NoticeIcon';
-import { CurrentUser } from '@/models/user';
 import { ConnectProps, ConnectState } from '@/models/connect';
 import styles from './index.less';
+import { FormattedUserNotification } from '@/services/notification.ts/dtos/userNotification';
+import UserNotificationHelper from '@/shared/helpers/UserNotificationHelper';
+import  router  from 'umi/router';
 
 export interface GlobalHeaderRightProps extends ConnectProps {
-  notices?: NoticeItem[];
-  currentUser?: CurrentUser;
-  fetchingNotices?: boolean;
+  notifications: FormattedUserNotification[];
   onNoticeVisibleChange?: (visible: boolean) => void;
   onNoticeClear?: (tabName?: string) => void;
+  unReadCount: number;
 }
 
 class GlobalHeaderRight extends Component<GlobalHeaderRightProps> {
   componentDidMount() {
+    this.loadNotifications();
+    this.registerToEvents();
+  }
+  async loadNotifications() {
     const { dispatch } = this.props;
     if (dispatch) {
-      dispatch({
-        type: 'global/fetchNotices',
+      await dispatch({
+        type: 'notification/getUserNotifications',
       });
     }
   }
+  registerToEvents() {
+    let self = this;
 
-  changeReadState = (clickedItem: NoticeItem): void => {
-    const { id } = clickedItem;
+    function onNotificationReceived(userNotification: abp.notifications.IUserNotification) {
+      UserNotificationHelper.show(userNotification);
+      self.loadNotifications();
+    }
+
+    abp.event.on('abp.notifications.received', userNotification => {
+      onNotificationReceived(userNotification);
+    });
+
+    function onNotificationsRefresh() {
+      self.loadNotifications();
+    }
+
+    abp.event.on('app.notifications.refresh', () => {
+
+      onNotificationsRefresh();
+
+    });
+  }
+
+  changeReadState = async (clickedItem: FormattedUserNotification) => {
+    const { userNotificationId } = clickedItem;
     const { dispatch } = this.props;
     if (dispatch) {
-      dispatch({
-        type: 'global/changeNoticeReadState',
-        payload: id,
+      await dispatch({
+        type: 'notification/setNotificationAsRead',
+        payload: { id: userNotificationId },
       });
     }
+    await this.loadNotifications();
   };
 
-  handleNoticeClear = (title: string, key: string) => {
+  handleNoticeClear = async (title: string, key: string) => {
     const { dispatch } = this.props;
-    message.success(`清除成功${title}`);
+
     if (dispatch) {
-      dispatch({
-        type: 'global/clearNotices',
-        payload: key,
+      await dispatch({
+        type: 'notification/setAllNotificationsAsRead',
       });
+      await this.loadNotifications();
     }
+
   };
 
-  getNoticeData = (): { [key: string]: NoticeItem[] } => {
-    const { notices = [] } = this.props;
-    if (notices.length === 0) {
-      return {};
-    }
-    const newNotices = notices.map(notice => {
-      const newNotice = { ...notice };
-      if (newNotice.datetime) {
-        newNotice.datetime = moment(notice.datetime as string).fromNow();
-      }
-      if (newNotice.id) {
-        newNotice.key = newNotice.id;
-      }
-      if (newNotice.extra && newNotice.status) {
-        const color = {
-          todo: '',
-          processing: 'blue',
-          urgent: 'red',
-          doing: 'gold',
-        }[newNotice.status];
-        newNotice.extra = (
-          <Tag color={color} style={{ marginRight: 0 }}>
-            {newNotice.extra}
-          </Tag>
-        );
-      }
-      return newNotice;
-    });
-    return groupBy(newNotices, 'type');
-  };
 
-  getUnreadData = (noticeData: { [key: string]: NoticeItem[] }) => {
-    const unreadMsg: { [key: string]: number } = {};
-    Object.keys(noticeData).forEach(key => {
-      const value = noticeData[key];
-      if (!unreadMsg[key]) {
-        unreadMsg[key] = 0;
-      }
-      if (Array.isArray(value)) {
-        unreadMsg[key] = value.filter(item => !item.read).length;
-      }
-    });
-    return unreadMsg;
-  };
 
   render() {
-    const { currentUser, fetchingNotices, onNoticeVisibleChange } = this.props;
-    const noticeData = this.getNoticeData();
-    const unreadMsg = this.getUnreadData(noticeData);
-
+    const { notifications, unReadCount, onNoticeVisibleChange } = this.props;
     return (
+
       <NoticeIcon
         className={styles.action}
-        count={currentUser && currentUser.unreadCount}
+        count={unReadCount}
         onItemClick={item => {
-          this.changeReadState(item as NoticeItem);
+          this.changeReadState(item);
         }}
-        loading={fetchingNotices}
-        clearText="清空"
+        clearText="忽略全部"
         viewMoreText="查看更多"
         onClear={this.handleNoticeClear}
         onPopupVisibleChange={onNoticeVisibleChange}
-        onViewMore={() => message.info('Click on view more')}
+        onViewMore={() => router.push("/admin/notifications")}
         clearClose
       >
         <NoticeIcon.Tab
           tabKey="notification"
-          count={unreadMsg.notification}
-          list={noticeData.notification}
+          count={unReadCount}
+          list={notifications}
           title="通知"
           emptyText=""
-          showViewMore
-        />
-        <NoticeIcon.Tab
-          tabKey="message"
-          count={unreadMsg.message}
-          list={noticeData.message}
-          title="消息"
-          emptyText=""
-          showViewMore
-        />
-        <NoticeIcon.Tab
-          tabKey="event"
-          title="事件"
-          emptyText=""
-          count={unreadMsg.event}
-          list={noticeData.event}
           showViewMore
         />
       </NoticeIcon>
@@ -144,10 +106,8 @@ class GlobalHeaderRight extends Component<GlobalHeaderRightProps> {
   }
 }
 
-export default connect(({ user, global, loading }: ConnectState) => ({
-  currentUser: user.currentUser,
+export default connect(({ global, loading, notification }: ConnectState) => ({
   collapsed: global.collapsed,
-  fetchingMoreNotices: loading.effects['global/fetchMoreNotices'],
-  fetchingNotices: loading.effects['global/fetchNotices'],
-  notices: global.notices,
+  notifications: notification.notifications,
+  unReadCount: notification.unreadCount
 }))(GlobalHeaderRight);

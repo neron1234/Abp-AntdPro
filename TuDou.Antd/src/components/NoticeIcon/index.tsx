@@ -5,19 +5,11 @@ import NoticeList, { NoticeIconTabProps } from './NoticeList';
 
 import HeaderDropdown from '../HeaderDropdown';
 import styles from './index.less';
+import { FormattedUserNotification } from '@/services/notification.ts/dtos/userNotification';
 
 const { TabPane } = Tabs;
 
-export interface NoticeIconData {
-  avatar?: string | React.ReactNode;
-  title?: React.ReactNode;
-  description?: React.ReactNode;
-  datetime?: React.ReactNode;
-  extra?: React.ReactNode;
-  style?: React.CSSProperties;
-  key?: string | number;
-  read?: boolean;
-}
+
 
 export interface NoticeIconProps {
   count?: number;
@@ -25,7 +17,7 @@ export interface NoticeIconProps {
   className?: string;
   loading?: boolean;
   onClear?: (tabName: string, tabKey: string) => void;
-  onItemClick?: (item: NoticeIconData, tabProps: NoticeIconTabProps) => void;
+  onItemClick?: (item: FormattedUserNotification, tabProps: NoticeIconTabProps) => void;
   onViewMore?: (tabProps: NoticeIconTabProps, e: MouseEvent) => void;
   onTabChange?: (tabTile: string) => void;
   style?: React.CSSProperties;
@@ -34,7 +26,7 @@ export interface NoticeIconProps {
   clearText?: string;
   viewMoreText?: string;
   clearClose?: boolean;
-  children: React.ReactElement<NoticeIconTabProps>[];
+  children: React.ReactElement<NoticeIconTabProps>[]|React.ReactElement<NoticeIconTabProps>;
 }
 
 export default class NoticeIcon extends Component<NoticeIconProps> {
@@ -55,7 +47,7 @@ export default class NoticeIcon extends Component<NoticeIconProps> {
     visible: false,
   };
 
-  onItemClick = (item: NoticeIconData, tabProps: NoticeIconTabProps): void => {
+  onItemClick = (item: FormattedUserNotification, tabProps: NoticeIconTabProps): void => {
     const { onItemClick } = this.props;
     if (onItemClick) {
       onItemClick(item, tabProps);
@@ -117,13 +109,12 @@ export default class NoticeIcon extends Component<NoticeIconProps> {
       },
     );
     return (
-      <>
+
         <Spin spinning={loading} delay={300}>
           <Tabs className={styles.tabs} onChange={this.onTabChange}>
             {panes}
           </Tabs>
         </Spin>
-      </>
     );
   }
 

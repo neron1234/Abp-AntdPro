@@ -1,7 +1,6 @@
 import { Reducer } from 'redux';
 import { Subscription, Effect } from 'dva';
 import lodash from 'lodash';
-import { NoticeIconData } from '@/components/NoticeIcon';
 import { queryNotices } from '@/services/user';
 import { ConnectState } from './connect.d';
 import { UserLoginInfoDto } from '@/shared/dtos/appSession/userLoginInfoDto';
@@ -15,15 +14,8 @@ import { ListResultDto } from '@/shared/dtos/listResultDto';
 import { UserLoginAttemptDto } from '@/services/userLogin/dtos/userLoginAttemptDto';
 import UserLoginService from '@/services/userLogin/userLogin';
 import { LocaleMappingService } from '@/shared/helpers/LocaleMappingService';
-export interface NoticeItem extends NoticeIconData {
-  id: string;
-  type: string;
-  status: string;
-}
-
 export interface GlobalModelState {
   collapsed: boolean;
-  notices: NoticeItem[];
   user?: UserLoginInfoDto;
   tenant?: TenantLoginInfoDto;
   application?: ApplicationInfoDto|null;
@@ -35,9 +27,6 @@ export interface GlobalModelType {
   namespace: 'global';
   state: GlobalModelState;
   effects: {
-    fetchNotices: Effect;
-    clearNotices: Effect;
-    changeNoticeReadState: Effect;
     getApplicationSession: Effect;
     initAbp: Effect;
     getRecentUserLoginAttempts: Effect;
@@ -45,8 +34,6 @@ export interface GlobalModelType {
   };
   reducers: {
     changeLayoutCollapsed: Reducer<GlobalModelState>;
-    saveNotices: Reducer<GlobalModelState>;
-    saveClearedNotices: Reducer<GlobalModelState>;
     saveSessions: Reducer<GlobalModelState>;
     saveUserLoginRecents: Reducer<GlobalModelState>;
     saveRecentUserLoginModalState: Reducer<GlobalModelState>;
@@ -59,29 +46,11 @@ const GlobalModel: GlobalModelType = {
 
   state: {
     collapsed: false,
-    notices: [],
     application:null,
     loginRecordModal:false,
   },
 
   effects: {
-    *fetchNotices(_, { call, put, select }) {
-      const data = yield call(queryNotices);
-      yield put({
-        type: 'saveNotices',
-        payload: data,
-      });
-      const unreadCount: number = yield select(
-        (state: ConnectState) => state.global.notices.filter(item => !item.read).length,
-      );
-      yield put({
-        type: 'user/changeNotifyCount',
-        payload: {
-          totalCount: data.length,
-          unreadCount,
-        },
-      });
-    },
     *initAbp(_, { call, put }){
       const response= yield call(getAll);
       let result = response.result;
@@ -117,47 +86,6 @@ const GlobalModel: GlobalModelType = {
         payload: response.result,
       });
     },
-    *clearNotices({ payload }, { put, select }) {
-      yield put({
-        type: 'saveClearedNotices',
-        payload,
-      });
-      const count: number = yield select((state: ConnectState) => state.global.notices.length);
-      const unreadCount: number = yield select(
-        (state: ConnectState) => state.global.notices.filter(item => !item.read).length,
-      );
-      yield put({
-        type: 'user/changeNotifyCount',
-        payload: {
-          totalCount: count,
-          unreadCount,
-        },
-      });
-    },
-    *changeNoticeReadState({ payload }, { put, select }) {
-      const notices: NoticeItem[] = yield select((state: ConnectState) =>
-        state.global.notices.map(item => {
-          const notice = { ...item };
-          if (notice.id === payload) {
-            notice.read = true;
-          }
-          return notice;
-        }),
-      );
-
-      yield put({
-        type: 'saveNotices',
-        payload: notices,
-      });
-
-      yield put({
-        type: 'user/changeNotifyCount',
-        payload: {
-          totalCount: notices.length,
-          unreadCount: notices.filter(item => !item.read).length,
-        },
-      });
-    },
   },
 
   reducers: {
@@ -165,21 +93,13 @@ const GlobalModel: GlobalModelType = {
       return {
         collapsed: false,
         ...state,
-        notices: state!.notices,
         loginRecordModal:payload
       };
     },
-    changeLayoutCollapsed(state = { notices: [], collapsed: true }, { payload }): GlobalModelState {
+    changeLayoutCollapsed(state = {  collapsed: true }, { payload }): GlobalModelState {
       return {
         ...state,
         collapsed: payload,
-      };
-    },
-    saveNotices(state, { payload }): GlobalModelState {
-      return {
-        collapsed: false,
-        ...state,
-        notices: payload,
       };
     },
     saveUserLoginRecents(state, { payload }): GlobalModelState {
@@ -187,14 +107,6 @@ const GlobalModel: GlobalModelType = {
         collapsed: false,
         ...state,
         userLoginRecords:payload,
-        notices: state!.notices,
-      };
-    },
-    saveClearedNotices(state = { notices: [], collapsed: true }, { payload }): GlobalModelState {
-      return {
-        collapsed: false,
-        ...state,
-        notices: state.notices!.filter((item): boolean => item.type !== payload),
       };
     },
     // 保存session
@@ -202,7 +114,6 @@ const GlobalModel: GlobalModelType = {
       return {
         collapsed: false,
         ...state,
-        notices:[],
         application:payload.application,
         user:payload.user,
         tenant:payload.tenant

@@ -1,13 +1,12 @@
 import AppConsts from "@/lib/appconst";
 
 
-export class SignalRHelper {
+export  class SignalRHelper {
     static initSignalR(callback: () => void): void {
 
         let encryptedAuthToken = abp.utils.getCookieValue(AppConsts.authorization.encrptedAuthTokenName);
-
         abp.signalr = {
-            autoConnect: true, // _zone.runOutsideAngular in ChatSignalrService
+            autoConnect: false, // _zone.runOutsideAngular in ChatSignalrService
             // autoReconnect: true,
             connect: ()=>{},
             hubs: {
@@ -23,7 +22,7 @@ export class SignalRHelper {
             callback();
         };
 
-        script.src = AppConsts.appBaseUrl + '/assets/abp/abp.signalr-client.js';
+        script.src = AppConsts.appBaseUrl + '/dist/abp.signalr-client.js';
         document.head.appendChild(script);
     }
 }

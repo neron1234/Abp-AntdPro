@@ -1,9 +1,10 @@
-import { Avatar, List } from 'antd';
-
+import { List, Avatar } from 'antd';
 import React from 'react';
 import classNames from 'classnames';
-import { NoticeIconData } from './index';
 import styles from './NoticeList.less';
+import read from '@/assets/read.svg';
+import unread from '@/assets/unread.svg';
+import {  FormattedUserNotification } from '@/services/notification.ts/dtos/userNotification';
 
 export interface NoticeIconTabProps {
   count?: number;
@@ -13,13 +14,13 @@ export interface NoticeIconTabProps {
   style?: React.CSSProperties;
   title: string;
   tabKey: string;
-  data?: NoticeIconData[];
-  onClick?: (item: NoticeIconData) => void;
+  data?: FormattedUserNotification[];
+  onClick?: (item: FormattedUserNotification) => void;
   onClear?: () => void;
   emptyText?: string;
   clearText?: string;
   viewMoreText?: string;
-  list: NoticeIconData[];
+  list?: FormattedUserNotification[];
   onViewMore?: (e: any) => void;
 }
 const NoticeList: React.SFC<NoticeIconTabProps> = ({
@@ -43,26 +44,18 @@ const NoticeList: React.SFC<NoticeIconTabProps> = ({
   }
   return (
     <div>
-      <List<NoticeIconData>
+      <List<FormattedUserNotification>
         className={styles.list}
         dataSource={data}
         renderItem={(item, i) => {
           const itemCls = classNames(styles.item, {
-            [styles.read]: item.read,
+            [styles.read]: !item.isUnread,
           });
-          // eslint-disable-next-line no-nested-ternary
-          const leftIcon = item.avatar ? (
-            typeof item.avatar === 'string' ? (
-              <Avatar className={styles.avatar} src={item.avatar} />
-            ) : (
-              <span className={styles.iconElement}>{item.avatar}</span>
-            )
-          ) : null;
-
+         const leftIcon=item.isUnread?<Avatar src={unread}/>:<Avatar src={read}/>
           return (
             <List.Item
               className={itemCls}
-              key={item.key || i}
+              key={item.userNotificationId || i}
               onClick={() => onClick && onClick(item)}
             >
               <List.Item.Meta
@@ -70,14 +63,14 @@ const NoticeList: React.SFC<NoticeIconTabProps> = ({
                 avatar={leftIcon}
                 title={
                   <div className={styles.title}>
-                    {item.title}
-                    <div className={styles.extra}>{item.extra}</div>
+                    {item.text}
+                    <div className={styles.extra}>{item.state=="UNREAD"?"未读":"已读"}</div>
                   </div>
                 }
                 description={
                   <div>
-                    <div className={styles.description}>{item.description}</div>
-                    <div className={styles.datetime}>{item.datetime}</div>
+                    <div className={styles.description}>{item.data.message}</div>
+                    <div className={styles.datetime}>{item.creationTime}</div>
                   </div>
                 }
               />
@@ -88,7 +81,7 @@ const NoticeList: React.SFC<NoticeIconTabProps> = ({
       <div className={styles.bottomBar}>
         {showClear ? (
           <div onClick={onClear}>
-            {clearText} {title}
+            {clearText}
           </div>
         ) : null}
         {showViewMore ? (

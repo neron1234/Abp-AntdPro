@@ -8,7 +8,7 @@ import { setAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
 import AppConsts from '@/lib/appconst';
 
-export interface LoginModalState {
+export interface LoginModelState {
   status?: true | false;
   type?: string;
   resetPasswordModalState?:boolean;
@@ -17,15 +17,15 @@ export interface LoginModalState {
 
 export interface LoginModelType {
   namespace: string;
-  state: LoginModalState;
+  state: LoginModelState;
   effects: {
     login: Effect;
     getCaptcha: Effect;
     logout: Effect;
   };
   reducers: {
-    changeLoginStatus: Reducer<LoginModalState>;
-    changeResetPasswordModalStatus: Reducer<LoginModalState>;
+    changeLoginStatus: Reducer<LoginModelState>;
+    changeResetPasswordModalStatus: Reducer<LoginModelState>;
   };
 }
 
